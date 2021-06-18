@@ -34,6 +34,13 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
+    public User getUser(){
+        User user = new User();
+        user.setId(this.id);
+        user.setUsername(this.username);
+        return user;
+    }
+
     /**
      * Build a UserDetails Implementation using a User Class
      * @param user User

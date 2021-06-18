@@ -5,7 +5,7 @@ import com.luisfelipedejesusm.final_project.DTOs.LoginRequest;
 import com.luisfelipedejesusm.final_project.DTOs.MessageResponse;
 import com.luisfelipedejesusm.final_project.DTOs.RegisterRequest;
 import com.luisfelipedejesusm.final_project.Jwt.JwtUtils;
-import com.luisfelipedejesusm.final_project.Models.ERole;
+import com.luisfelipedejesusm.final_project.Enums.ERole;
 import com.luisfelipedejesusm.final_project.Models.Role;
 import com.luisfelipedejesusm.final_project.Models.User;
 import com.luisfelipedejesusm.final_project.Repositories.RoleRepository;

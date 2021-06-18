@@ -1,4 +1,4 @@
-package com.luisfelipedejesusm.final_project.Models;
+package com.luisfelipedejesusm.final_project.Enums;
 
 public enum ERole {
     ROLE_USER,

@@ -1,5 +1,6 @@
 package com.luisfelipedejesusm.final_project.Models;
 
+import com.luisfelipedejesusm.final_project.Enums.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
