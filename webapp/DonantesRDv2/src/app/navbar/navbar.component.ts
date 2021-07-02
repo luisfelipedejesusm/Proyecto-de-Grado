@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +8,20 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  shouldShow = true;
+
   // constructor(public element: ElementRef) {}
-  constructor(private router: Router){}
+  constructor(private router: Router){
+    router.events.subscribe(val => {
+      if(val instanceof NavigationEnd){
+        if(val.url == '/signup' || val.url == '/login'){
+          this.shouldShow = false;
+        }else{
+          this.shouldShow = true;
+        }
+      }
+    })
+  }
 
   @ViewChild('navbar') nav?: ElementRef; 
 
@@ -35,7 +47,9 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll(event: any) {
-    // this.navbarShrink();
+    this.navbarShrink();
   }
+
+
 
 }
