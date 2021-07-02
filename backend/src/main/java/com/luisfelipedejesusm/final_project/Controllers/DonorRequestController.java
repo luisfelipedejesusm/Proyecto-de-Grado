@@ -1,6 +1,6 @@
 package com.luisfelipedejesusm.final_project.Controllers;
 
-import com.luisfelipedejesusm.final_project.DTOs.DonorRequestPayload;
+import com.luisfelipedejesusm.final_project.DTOs.Responses.DonorRequestPayload;
 import com.luisfelipedejesusm.final_project.Services.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/request")
-public class RequestController {
+public class DonorRequestController {
 
     @Autowired
     private RequestService requestService;

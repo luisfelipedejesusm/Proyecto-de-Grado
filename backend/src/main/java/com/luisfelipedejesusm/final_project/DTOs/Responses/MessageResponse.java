@@ -1,4 +1,4 @@
-package com.luisfelipedejesusm.final_project.DTOs;
+package com.luisfelipedejesusm.final_project.DTOs.Responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

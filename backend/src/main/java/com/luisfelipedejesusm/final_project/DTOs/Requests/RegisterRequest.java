@@ -1,5 +1,4 @@
-package com.luisfelipedejesusm.final_project.DTOs;
-
+package com.luisfelipedejesusm.final_project.DTOs.Requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,9 +7,16 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
-public class LoginRequest {
+public class RegisterRequest {
+    @NotBlank
+    private String name;
+
     @NotBlank
     private String username;
+
+    @NotBlank
+    private String email;
+
     @NotBlank
     private String password;
 }

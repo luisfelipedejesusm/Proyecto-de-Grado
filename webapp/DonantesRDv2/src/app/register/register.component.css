@@ -1,0 +1,17 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://c.files.bbci.co.uk/182FF/production/_107317099_blooddonor976.jpg');
+  background-size: cover;
+  background-position: center center;
+}

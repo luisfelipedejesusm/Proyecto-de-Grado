@@ -53,7 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors().and().csrf().disable()
+                .cors().disable()
+                .csrf().disable()
                 .exceptionHandling()
                 // Custom Handler for Unauthorized Requests
                 .authenticationEntryPoint(unauthorizedHandler)

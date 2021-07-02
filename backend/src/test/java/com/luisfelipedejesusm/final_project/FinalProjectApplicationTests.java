@@ -1,17 +1,14 @@
 package com.luisfelipedejesusm.final_project;
 
-import com.luisfelipedejesusm.final_project.DTOs.DonorRequestPayload;
-import com.luisfelipedejesusm.final_project.DTOs.LoginRequest;
+import com.luisfelipedejesusm.final_project.DTOs.Responses.DonorRequestPayload;
+import com.luisfelipedejesusm.final_project.DTOs.Requests.LoginRequest;
 import com.luisfelipedejesusm.final_project.Enums.EBloodType;
 import com.luisfelipedejesusm.final_project.Repositories.UserRepository;
 import com.luisfelipedejesusm.final_project.Services.AuthenticationService;
 import com.luisfelipedejesusm.final_project.Services.RequestService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithUserDetails;
 
 
 @SpringBootTest

@@ -1,7 +1,7 @@
 package com.luisfelipedejesusm.final_project.Controllers;
 
-import com.luisfelipedejesusm.final_project.DTOs.LoginRequest;
-import com.luisfelipedejesusm.final_project.DTOs.RegisterRequest;
+import com.luisfelipedejesusm.final_project.DTOs.Requests.LoginRequest;
+import com.luisfelipedejesusm.final_project.DTOs.Requests.RegisterRequest;
 import com.luisfelipedejesusm.final_project.Services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,9 +1,9 @@
 package com.luisfelipedejesusm.final_project.Services;
 
-import com.luisfelipedejesusm.final_project.DTOs.JwtResponse;
-import com.luisfelipedejesusm.final_project.DTOs.LoginRequest;
-import com.luisfelipedejesusm.final_project.DTOs.MessageResponse;
-import com.luisfelipedejesusm.final_project.DTOs.RegisterRequest;
+import com.luisfelipedejesusm.final_project.DTOs.Responses.JwtResponse;
+import com.luisfelipedejesusm.final_project.DTOs.Requests.LoginRequest;
+import com.luisfelipedejesusm.final_project.DTOs.Responses.MessageResponse;
+import com.luisfelipedejesusm.final_project.DTOs.Requests.RegisterRequest;
 import com.luisfelipedejesusm.final_project.Jwt.JwtUtils;
 import com.luisfelipedejesusm.final_project.Enums.ERole;
 import com.luisfelipedejesusm.final_project.Models.Role;
