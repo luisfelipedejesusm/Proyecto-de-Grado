@@ -1,0 +1,9 @@
+<div class="card card-clickable" (click)="onClick()">
+    <div class="card-body">
+      <h5 class="card-title">{{ tittle }}</h5>
+      <div *ngIf="text">
+        <hr>
+        <p class="card-text">{{ text }}</p>
+      </div>
+    </div>
+</div>

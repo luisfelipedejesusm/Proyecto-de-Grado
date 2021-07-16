@@ -14,6 +14,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MasterheadComponent } from './masterhead/masterhead.component';
+import { UserAdministrationComponent } from './user-administration/user-administration.component';
+import { AdminGuardService } from './_guards/admin-guard';
+import { AuthGuardService } from './_guards/auth-guard';
+import { DonateBloodComponent } from './donate-blood/donate-blood.component';
+import { AdministrationComponent } from './administration/administration.component';
+import { CardComponent } from './card/card.component';
+import { DonationCenterComponent } from './donation-center/donation-center.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -25,15 +33,21 @@ import { MasterheadComponent } from './masterhead/masterhead.component';
     ProfileComponent,
     AdminPanelComponent,
     NavbarComponent,
-    MasterheadComponent
+    MasterheadComponent,
+    UserAdministrationComponent,
+    DonateBloodComponent,
+    AdministrationComponent,
+    CardComponent,
+    DonationCenterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, AdminGuardService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

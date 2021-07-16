@@ -9,15 +9,21 @@ import { NavigationEnd, Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   shouldShow = true;
+  shouldBeTransparent = true;
 
   // constructor(public element: ElementRef) {}
   constructor(private router: Router){
     router.events.subscribe(val => {
       if(val instanceof NavigationEnd){
-        if(val.url == '/signup' || val.url == '/login'){
+        if(val.url.indexOf('/signup') >= 0 || val.url.indexOf('/login') >= 0){
           this.shouldShow = false;
+          this.nav?.nativeElement && this.nav.nativeElement.classList.remove('navbar-shrink');
+        }else if(val.url.indexOf("/home") < 0){
+          this.shouldBeTransparent = false;
+          this.nav?.nativeElement && this.nav.nativeElement.classList.add('navbar-shrink');
         }else{
           this.shouldShow = true;
+          this.nav?.nativeElement && this.nav.nativeElement.classList.remove('navbar-shrink');
         }
       }
     })
@@ -30,7 +36,7 @@ export class NavbarComponent implements OnInit {
 
   ngAfterViewInit(): void{
     //console.log(this.element.nativeElement.children[0]);
-    this.navbarShrink();
+    if(this.shouldBeTransparent) this.navbarShrink();
     
   }
 
@@ -47,7 +53,7 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll(event: any) {
-    this.navbarShrink();
+    if(this.shouldBeTransparent) this.navbarShrink();
   }
 
 
