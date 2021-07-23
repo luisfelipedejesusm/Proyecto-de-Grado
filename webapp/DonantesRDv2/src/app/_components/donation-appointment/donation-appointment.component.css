@@ -1,0 +1,16 @@
+.donated-blood-chk{
+    margin-top: 35px;
+}
+
+.card-footer button{
+    float: right;
+}
+
+.center-alignment{
+    text-align: center;
+}
+
+#continueToAppointments{
+    padding: 0 12px;
+    margin-top: 10px;
+}

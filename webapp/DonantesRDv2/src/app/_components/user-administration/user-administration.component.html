@@ -1,0 +1,90 @@
+<div class="container content">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <ngx-datatable
+                #datatable
+                class="material"
+                [headerHeight]="50"
+                [limit]="10"
+                [columnMode]="'force'"
+                [footerHeight]="50"
+                rowHeight="auto"    
+                [rows]="users"
+            >
+
+                <ngx-datatable-column name="Name">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Username">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Email">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="IsDonor">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val? 'Yes' : 'No' }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="">
+                    <ng-template ngx-datatable-cell-template let-row="row">
+                        <div class="buttons-column">
+                            <!-- <button class="btn btn-danger" (click)="remove(row)"><i class="fa fa-trash"></i></button> -->
+                            <button class="btn btn-warning" (click)="update(row, content)"><i class="fa fa-pen color-white"></i></button>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">User Update</h4>
+    </div>
+    <div class="modal-body">
+        <form name="form" (ngSubmit)="f.form.valid && updateUserInformation(modal)" #f="ngForm" novalidate>
+            <div class="mb-3">
+                <label for="name">Name</label>
+                <input [(ngModel)]="model.name" #name="ngModel" name="name" type="text" required autofocus class="form-control">
+                <div class="alert-danger" *ngIf="name.errors && f.submitted">
+                    <div *ngIf="name.errors.required">Name is required</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="address">Email</label>
+                <textarea [(ngModel)]="model.email" #email="ngModel" name="address" email required autofocus class="form-control"></textarea>
+                <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors.required">Email is required</div>
+                    <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" id="chk_isDonor" type="checkbox" [checked]="model.isDonor" (change)="model.isDonor = !model.isDonor">
+                    <label class="form-check-label" for="chk_isDonor">
+                        Is A Donor
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success" (click)="f.ngSubmit.emit(true)" [disabled]="!f.form.valid">Save</button>
+        <button type="button" class="btn btn-danger" (click)="clear(modal)">Cancel</button>
+    </div>
+</ng-template>

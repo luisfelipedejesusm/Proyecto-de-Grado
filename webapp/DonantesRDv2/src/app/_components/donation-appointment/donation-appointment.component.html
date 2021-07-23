@@ -1,0 +1,137 @@
+<div class="container content">
+    <div class="row">
+        <div class="col-lg-12" *ngIf="!showConfirmation">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Blood Donation Form</h5>
+                </div>
+                <div class="card-body">
+                    <form name="form" (ngSubmit)="f.form.valid && newDonationAppointment()" #f="ngForm" novalidate>
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input [(ngModel)]="model.firstName" #fn="ngModel" name="firstName" type="text" class="form-control" required [class.is-invalid]="fn.errors && f.submitted">
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="last-name" class="form-label">Last Name</label>
+                                <input type="text" id="last-name" class="form-control"  name="lastName" [(ngModel)]="model.lastName" required [class.is-invalid]="ln.errors && f.submitted" #ln="ngModel">
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" id="email" class="form-control"  name="email" [(ngModel)]="model.email" required [class.is-invalid]="email.errors && f.submitted" #email="ngModel">
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="text" id="phone" class="form-control"  name="phoneNumber" [(ngModel)]="model.phoneNumber" mask="(000) 000-0000" required [class.is-invalid]="phone.errors && f.submitted" #phone="ngModel"> 
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-lg-12">
+                                <label for="adress" class="form-label">Address</label>
+                                <textarea type="text" id="address" class="form-control"  name="address" [(ngModel)]="model.address" rows="6" required [class.is-invalid]="address.errors && f.submitted" #address="ngModel"></textarea>
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="bloodgroup" class="form-label">Blood Group</label>
+                                <select name="bloodgroup" id="bloodgroup" class="form-select"  [(ngModel)]="model.bloodGroup" required [class.is-invalid]="bg.errors && f.submitted" #bg="ngModel">
+                                    <option *ngFor="let group of bloodgroups" [value]="group">{{ group }}</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="donationcenter" class="form-label">Donation Center</label>
+                                <select name="donationcenter" id="donationcenter"  class="form-select" [(ngModel)]="model.donationCenterId" required (change)="updateDonationCenterInformation()" [class.is-invalid]="dc.errors && f.submitted" #dc="ngModel">
+                                    <option value="">--</option>
+                                    <option *ngFor="let center of donationCenters" [value]="center.id">{{ center.name }}</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="dateAppointment" class="form-label">Date Appointment</label>
+                                <input type="date" id="dateAppointment" class="form-control"  name="dateAppointment" [(ngModel)]="model.appointmentDate" required [disabled]="!model.donationCenterId" [class.is-invalid]="hour.errors && f.submitted" #hour="ngModel">
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <label for="hourAppointment" class="form-label">Hour Appointment</label>
+                                <select name="hourAppointment" [disabled]="!model.appointmentDate"  id="hourAppointment" class="form-select" required [(ngModel)]="model.appointmentTime" [class.is-invalid]="time.errors && f.submitted" #time="ngModel">
+                                    <option value="">--</option>
+                                    <option *ngFor="let hour of getAvailableHours()" [value]="hour">{{ hour }}</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="form-check donated-blood-chk">
+                                    <input class="form-check-input" type="checkbox" id="firstTime" [checked]="model.firstTimeDonor" (change)="model.firstTimeDonor = !model.firstTimeDonor">
+                                    <label class="form-check-label" for="firstTime">
+                                        I have donated blood in the past
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success" [disabled]="isSubmitted" (click)="f.onSubmit($event)" [disabled]="isSubmitted">Create Appointment!</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 offset-lg-3 col-sm-12" *ngIf="showConfirmation">
+            <div class="card center-alignment">
+                <div class="card-header">
+                    <h5>Appointment Confirmation</h5>
+                </div>
+                <div class="card-body">
+                    <b>Reference Number: </b> asdasd 
+                    <br>
+                    <b>Name: </b> {{ model.getFullName() }} 
+                    <br>
+                    <b>Email: </b> {{ model.email }}
+                    <hr>
+                    <b>Donation Center: </b> {{ getDonationCenter(model.donationCenterId)!.name }} 
+                    <br>
+                    <b>Appointment Date and Time: </b> {{ model.getDateAndTime() }}
+                </div>
+            </div>
+            <div class="row" id="continueToAppointments">
+                <a class="btn btn-success" routerLink="/donate-blood/my-appointments">Continue to My Appointments</a>
+            </div>
+        </div>
+    </div>
+</div>
