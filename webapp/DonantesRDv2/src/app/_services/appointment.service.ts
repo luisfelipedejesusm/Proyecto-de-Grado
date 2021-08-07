@@ -14,10 +14,10 @@ export class AppointmentService {
   constructor(private shared: SharedService, private http: HttpClient, private token: TokenStorageService) { }
 
   createDonationAppointment(appoinmentData: DonationAppointment): Observable<any>{
-    return this.http.post(this.shared.getApiUrl() + "appointment/donation", appoinmentData);
+    return this.http.post(this.shared.getApiUrl() + "public/donation", appoinmentData);
   }
 
   getMyAppointments(): Observable<DonationAppointment[]> {
-    return this.http.get<DonationAppointment[]>(this.shared.getApiUrl() + 'appointments/my-appointments/' + this.token.getUser().id);
+    return this.http.get<DonationAppointment[]>(this.shared.getApiUrl() + 'appointment/my-appointments/' + this.token.getUser().id);
   }
 }

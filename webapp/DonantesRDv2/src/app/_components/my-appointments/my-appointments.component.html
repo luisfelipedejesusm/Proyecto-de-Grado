@@ -15,23 +15,23 @@
 
                 <ngx-datatable-column name="Reference Number" prop="referenceNumber">
                     <ng-template ngx-datatable-cell-template let-val="value">
-                        {{ val }}
+                        {{ val }} ksdfkdsjskfsdfk
                     </ng-template>
                 </ngx-datatable-column>
 
                 <ngx-datatable-column name="Donation Center" prop="donationCenter">
                     <ng-template ngx-datatable-cell-template let-val="value">
-                        {{ val.name }}
+                        {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Appointment Date" prop="appointmentDate">
+                <ngx-datatable-column name="Appointment Date" prop="dateAppointment">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Appointment Time" prop="appointmentTime">
+                <ngx-datatable-column name="Appointment Time" prop="hourAppointment">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
@@ -39,7 +39,9 @@
 
                 <ngx-datatable-column name="">
                     <ng-template ngx-datatable-cell-template let-row="row">
-                        
+                        <div class="buttons-column">
+                            <button class="btn btn-warning">bnb</button>
+                        </div>
                     </ng-template>
                 </ngx-datatable-column>
 

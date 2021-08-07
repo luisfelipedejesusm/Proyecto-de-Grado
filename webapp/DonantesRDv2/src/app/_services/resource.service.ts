@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DateAndTime } from '../_models/date-and-time.model';
 import { DonationCenter } from '../_models/donation-center.model';
+import { User } from '../_models/user.model';
 import { SharedService } from './shared.service';
 
 @Injectable({
@@ -16,11 +17,15 @@ export class ResourceService {
   }
 
   getDonationCenters(): Observable<DonationCenter[]>{
-    return this.http.get<DonationCenter[]>(this.shared.getApiUrl() + 'donation-center');
+    return this.http.get<DonationCenter[]>(this.shared.getApiUrl() + 'public/donation-center');
   }
 
   getDonationCenterAppointmentDates(donationCenterId: Number): Observable<DateAndTime[]>{
-    return this.http.get<DateAndTime[]>(this.shared.getApiUrl() + 'appointment/donation/appointment-dates/' + donationCenterId);
+    return this.http.get<DateAndTime[]>(this.shared.getApiUrl() + 'public/donation/appointment-dates/' + donationCenterId);
+  }
+
+  getPublicDonors(): Observable<User[]>{
+    return this.http.get<User[]>(this.shared.getApiUrl() + 'public/donors');
   }
 
   getWorkingHours(start: number, end: number): String[]{

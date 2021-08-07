@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "donantesrd": {
+      "hosting": {
+        "DonantesRDv2": [
+          "donantesrd"
+        ]
+      }
+    }
+  }
+}

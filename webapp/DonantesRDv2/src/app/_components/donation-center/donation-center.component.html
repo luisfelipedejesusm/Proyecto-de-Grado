@@ -1,28 +1,6 @@
 <div class="container content">
     <div class="row">
         <div class="col-lg-12">
-            <!-- <table datatable [dtTrigger]="dtTrigger" class="table">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let center of donationCenters">
-                        <td>{{ center.id }}</td>
-                        <td>{{ center.name }}</td>
-                        <td>{{ center.address }}</td>
-                        <td class="buttons-column">
-                            <button class="btn btn-danger" (click)="remove(center)"><i class="fa fa-trash"></i></button>
-                            <button class="btn btn-warning" (click)="update(center, content)"><i class="fa fa-pen color-white"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table> -->
-
             <ngx-datatable
                 #datatable
                 class="material"
@@ -46,11 +24,23 @@
                     </ng-template>
                 </ngx-datatable-column>
 
+                <ngx-datatable-column name="Username">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Email">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
                 <ngx-datatable-column name="">
                     <ng-template ngx-datatable-cell-template let-row="row">
                         <div class="buttons-column">
                             <button class="btn btn-danger" (click)="remove(row)"><i class="fa fa-trash"></i></button>
-                            <button class="btn btn-warning" (click)="update(row, content)"><i class="fa fa-pen color-white"></i></button>
+                            <button class="btn btn-warning" (click)="update(row)"><i class="fa fa-pen color-white"></i></button>
                         </div>
                     </ng-template>
                 </ngx-datatable-column>
@@ -61,32 +51,6 @@
     </div>
 </div>
 
-<button type="button" class="btn btn-success btn-lg float-button-rounded" (click)="open(content)"><i class="fa fa-plus"></i></button>
+<button type="button" class="btn btn-success btn-lg float-button-rounded" (click)="open()"><i class="fa fa-plus"></i></button>
 
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">New Donation Center Form</h4>
-    </div>
-    <div class="modal-body">
-        <form name="form" (ngSubmit)="f.form.valid && newDonationCenter()" #f="ngForm" novalidate>
-            <div class="mb-3">
-                <label for="name">Donation Center Name</label>
-                <input [(ngModel)]="model.name" #username="ngModel" name="name" type="text" required autofocus class="form-control">
-                <div class="alert-danger" *ngIf="username.errors && f.submitted">
-                    <div *ngIf="username.errors.required">Name is required</div>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="address">Donation Center Address</label>
-                <textarea [(ngModel)]="model.address" #username="ngModel" name="address" required autofocus class="form-control"></textarea>
-                <div class="alert-danger" *ngIf="username.errors && f.submitted">
-                    <div *ngIf="username.errors.required">Address is required</div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-success" (click)="f.ngSubmit.emit(true)" [disabled]="!f.form.valid">Save</button>
-        <button type="button" class="btn btn-danger" (click)="clear(modal)">Cancel</button>
-    </div>
-</ng-template>
+<!-- <app-donation-center-modal (newCenter)="newDonationCenter($event)" ></app-donation-center-modal> -->

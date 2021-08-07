@@ -1,6 +1,7 @@
 import { Time } from "@angular/common";
 import { Deserializable } from "./deserializable.model";
 import { DonationCenter } from "./donation-center.model";
+import { User } from "./user.model";
 
 export class DonationAppointment implements Deserializable{
 
@@ -17,15 +18,24 @@ export class DonationAppointment implements Deserializable{
 
     donationCenter!: DonationCenter;
 
-    appointmentDate!: String | null;
-    appointmentTime!: Time | null;
+    dateAppointment: String | null = "";
+    hourAppointment: String | null = "";
 
     referenceNumber!: String;
 
+    user!: User;
+
+    constructor(){
+        this.donationCenter = new DonationCenter();
+    }
+
     deserialize(input: any): this {
         Object.assign(this, input);
-        if(input.donationCenter){
+        if(input && input.donationCenter){
             this.donationCenter = new DonationCenter().deserialize(input.donationCenter);
+        }
+        if(input && input.user){
+            this.user = new User().deserialize(input.user);
         }
         return this;
     }
@@ -35,7 +45,7 @@ export class DonationAppointment implements Deserializable{
     }
 
     getDateAndTime(){
-        return this.appointmentDate + " " + this.appointmentTime;
+        return this.dateAppointment + " " + this.hourAppointment;
     }
 
 }

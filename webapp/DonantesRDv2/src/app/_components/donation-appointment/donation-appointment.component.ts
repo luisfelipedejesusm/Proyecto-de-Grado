@@ -4,8 +4,11 @@ import { Subscription } from 'rxjs';
 import { DateAndTime } from 'src/app/_models/date-and-time.model';
 import { DonationAppointment } from 'src/app/_models/donation-apointment.model';
 import { DonationCenter } from 'src/app/_models/donation-center.model';
+import { User } from 'src/app/_models/user.model';
 import { AppointmentService } from 'src/app/_services/appointment.service';
+import { PermissionService } from 'src/app/_services/permission.service';
 import { ResourceService } from 'src/app/_services/resource.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-donation-appointment',
@@ -14,7 +17,11 @@ import { ResourceService } from 'src/app/_services/resource.service';
 })
 export class DonationAppointmentComponent implements OnInit, OnDestroy {
 
-  constructor(private resource: ResourceService, private appoinmentService: AppointmentService, private router: Router) { }
+  constructor(
+    private resource: ResourceService, 
+    private appoinmentService: AppointmentService, 
+    private permission: PermissionService,
+    private token: TokenStorageService) { }
 
   bloodgroups: String[] = this.resource.getBloodGroups();
   donationCenters: DonationCenter[] = [];
@@ -26,12 +33,21 @@ export class DonationAppointmentComponent implements OnInit, OnDestroy {
   isSubmitted: boolean = false;
   showConfirmation: boolean = false;
 
+  authenticated = this.permission.authenticated;
+
   ngOnInit(): void {
     this.subscriptions.add(
       this.resource.getDonationCenters().subscribe(response => {
         this.donationCenters = response;
       })
     );
+
+    if(this.authenticated){
+      let user: User = this.token.getUser();
+      this.model.userid = user.id;
+      Object.assign(this.model, user);
+      this.model.bloodGroup = user.bloodType;
+    }
   }
 
   newDonationAppointment(){
@@ -49,7 +65,7 @@ export class DonationAppointmentComponent implements OnInit, OnDestroy {
 
   updateDonationCenterInformation(){
     if(this.model.donationCenterId){
-      this.model.appointmentDate = null;
+      this.model.dateAppointment = null;
       this.subscriptions.add(
         this.resource.getDonationCenterAppointmentDates(this.model.donationCenterId).subscribe(response => {
           this.availableDateAndTime = response;
@@ -59,7 +75,7 @@ export class DonationAppointmentComponent implements OnInit, OnDestroy {
   }
 
   getAvailableHours(){
-    let dat = this.availableDateAndTime?.filter(i=>i.date == this.model.appointmentDate).map(i => i.time.substr(0, 5));
+    let dat = this.availableDateAndTime?.filter(i=>i.date == this.model.dateAppointment).map(i => i.time.substr(0, 5));
     return this.resource.getWorkingHours(8, 18).filter(item => {
       return !dat?.includes(item.toString());
     });
@@ -68,6 +84,8 @@ export class DonationAppointmentComponent implements OnInit, OnDestroy {
   getDonationCenter(donationCenterId: any): DonationCenter | undefined {
     return this.donationCenters.find(center => center.id == donationCenterId);
   }
+
+  
 
 
 }

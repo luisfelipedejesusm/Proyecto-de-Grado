@@ -1,0 +1,54 @@
+<div class="container content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-header">
+                    <h6>Edit Profile</h6>
+                </div>
+                <div class="card-body row">
+                    
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <label for="ipt-first-name" class="form-label">First Name</label>
+                        <input type="text" id="ipt-first-name" name="firstName" class="form-control" [(ngModel)]="user.firstName">
+                    </div>
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <label for="ipt-last-name" class="form-label">Last Name</label>
+                        <input type="text" id="ipt-last-name" name="lastName" class="form-control" [(ngModel)]="user.lastName">
+                    </div>
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <label for="ipt-phone-number" class="form-label">Phone Number</label>
+                        <input type="text" id="ipt-phone-number" name="phoneNumber" class="form-control" [(ngModel)]="user.phoneNumber">
+                    </div>
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <label for="ipt-blood-type" class="form-label">Blood Type</label>
+                        <select name="bloodType" id="ipt-blood-type" class="form-select" [(ngModel)]="user.bloodType">
+                            <option value="">--</option>
+                            <option *ngFor="let group of bloodGroups" [value]="group">{{ group }}</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="col-lg-12 col-sm-12 mb-3">
+                        <div class="form-check donated-blood-chk">
+                            <input class="form-check-input" type="checkbox" id="is-donor" [checked]="user.isDonor" (change)="user.isDonor = !user.isDonor">
+                            <label class="form-check-label" for="is-donor">
+                                I'm a Public Donor
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 mb-3" [hidden]="!user.isDonor">
+                        <label for="ipt-address" class="form-label">Address</label>
+                        <input type="text" class="form-control" [(ngModel)]="user.address" name="address" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+                    </div>
+
+                    <agm-map [latitude]="user.latitude" [longitude]="user.longitude" [zoom]="zoom" [hidden]="!user.isDonor" [clickableIcons]="false">
+                        <agm-marker [latitude]="user.latitude" [longitude]="user.longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+                    </agm-map>
+
+                    <div class="col-lg-12 col-sm-12 buttons-column">
+                        <button class="btn btn-success" (click)="saveProfile()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

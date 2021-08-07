@@ -15,8 +15,8 @@ export class AdminGuardService implements CanActivate {
                 state: RouterStateSnapshot): boolean|UrlTree {
 
         let roles: String[] = this.token.getUser().roles;
- 
-        if (!roles.includes(this.permission)) {
+
+        if (!this.token.isLoggedIn() || !roles.map((a: any)=> a.name).includes(this.permission)) {
             console.log('You are not allowed to view this page. You are redirected to login Page');
             
             this.router.navigate(["login"],{ queryParams: { retUrl: route.url} });

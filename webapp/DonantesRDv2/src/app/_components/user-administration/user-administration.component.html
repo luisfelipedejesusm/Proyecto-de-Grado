@@ -13,7 +13,13 @@
                 [rows]="users"
             >
 
-                <ngx-datatable-column name="Name">
+                <ngx-datatable-column name="FirstName">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="LastName">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>

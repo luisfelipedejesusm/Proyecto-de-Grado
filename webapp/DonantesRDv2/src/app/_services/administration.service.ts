@@ -16,11 +16,7 @@ export class AdministrationService {
   constructor(private http: HttpClient, private shared: SharedService) { }
 
   createDonationCenter(model: DonationCenter): Observable<any> {
-    const {name, address} = model;
-    return this.http.post(this.shared.getApiUrl() + 'donation-center', {
-      name,
-      address
-    });
+    return this.http.post(this.shared.getApiUrl() + 'donation-center', model);
   }
 
   getDonationCenters(): Observable<any> {

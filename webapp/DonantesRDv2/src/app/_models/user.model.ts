@@ -4,11 +4,26 @@ import { Role } from "./role.model";
 export class User implements Deserializable{
 
     id!: Number;
-    name!: String;
+    name!: String; // deprecated
     username!: String;
     email!: String;
-    isDonor!: Boolean;
+
+    isDonor: Boolean = false;
+
+    firstName: string = "";
+    lastName: string = "";
+    phoneNumber: string = "";
+    address: string = "";
+    bloodType: string = "";
+
     roles!: Role[];
+
+    latitude!: number;
+    longitude!: number;
+
+    getFullName(){
+        return (this.firstName || "") + " " + (this.lastName || ""); 
+    }
 
     deserialize(input: any): this {
         Object.assign(this, input);

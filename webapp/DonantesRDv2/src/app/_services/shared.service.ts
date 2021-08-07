@@ -14,7 +14,7 @@ export class SharedService {
   };
 
   getApiUrl(){
-    return this._testUrl;
+    return this._apiUrl;
   }
   getHttpOptions(){
     return this._httpOptions;

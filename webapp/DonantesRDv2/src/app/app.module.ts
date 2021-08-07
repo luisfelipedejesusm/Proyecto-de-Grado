@@ -15,8 +15,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { MasterheadComponent } from './_components/masterhead/masterhead.component';
 import { UserAdministrationComponent } from './_components/user-administration/user-administration.component';
-import { AdminGuardService } from './_guards/admin-guard';
-import { AuthGuardService } from './_guards/auth-guard';
+import { AdminGuardService } from './_guards/admin.guard';
+import { AuthGuardService } from './_guards/auth.guard';
 import { DonateBloodComponent } from './_components/donate-blood/donate-blood.component';
 import { AdministrationComponent } from './_components/administration/administration.component';
 import { CardComponent } from './_components/card/card.component';
@@ -29,6 +29,19 @@ import { DonationAppointmentComponent } from './_components/donation-appointment
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AlertModule } from '@full-fledged/alerts';
 import { MyAppointmentsComponent } from './_components/my-appointments/my-appointments.component';
+import { UnAuthGuardService } from './_guards/unauth.guard';
+import { EditProfileComponent } from './_components/edit-profile/edit-profile.component';
+import { AgmCoreModule } from '@agm/core';
+import { DonationCenterModalComponent } from './_components/_modals/donation-center-modal/donation-center-modal.component';
+import { UserGuardService } from './_guards/user.guard';
+import { DonationCenterGuardService } from './_guards/donation-center.guard';
+import { NewCampaignComponent } from './_components/new-campaign/new-campaign.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from "../environments/environment";
+import { CampaingsComponent } from './_components/campaings/campaings.component';
+
+
 
 
 @NgModule({
@@ -48,7 +61,11 @@ import { MyAppointmentsComponent } from './_components/my-appointments/my-appoin
     DonationCenterComponent,
     BloodBankComponent,
     DonationAppointmentComponent,
-    MyAppointmentsComponent
+    MyAppointmentsComponent,
+    EditProfileComponent,
+    DonationCenterModalComponent,
+    NewCampaignComponent,
+    CampaingsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +76,15 @@ import { MyAppointmentsComponent } from './_components/my-appointments/my-appoin
     NgbModule,
     NgxDatatableModule,
     NgxMaskModule.forRoot(),
-    AlertModule.forRoot({maxMessages: 5, timeout: 5000, positionX: 'right'})
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, positionX: 'right'}),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDAF5F-zRJCQJyEM6SN6Ary9a2nYyarZrw',
+      libraries: ['places']
+    }),
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
   ],
-  providers: [authInterceptorProviders, AdminGuardService, AuthGuardService],
+  providers: [authInterceptorProviders, AdminGuardService, AuthGuardService, UnAuthGuardService, UserGuardService, DonationCenterGuardService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { } 

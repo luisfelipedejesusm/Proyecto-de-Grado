@@ -1,6 +1,6 @@
 <div class="container content">
     <div class="row">
-        <div class="col-lg-12" *ngIf="!showConfirmation">
+        <div class="col-lg-10 offset-lg-1" *ngIf="!showConfirmation">
             <div class="card">
                 <div class="card-header">
                     <h5>Blood Donation Form</h5>
@@ -76,14 +76,14 @@
                         <div class="row mb-4">
                             <div class="col-lg-6 col-sm-12">
                                 <label for="dateAppointment" class="form-label">Date Appointment</label>
-                                <input type="date" id="dateAppointment" class="form-control"  name="dateAppointment" [(ngModel)]="model.appointmentDate" required [disabled]="!model.donationCenterId" [class.is-invalid]="hour.errors && f.submitted" #hour="ngModel">
+                                <input type="date" id="dateAppointment" class="form-control"  name="dateAppointment" [(ngModel)]="model.dateAppointment" required [disabled]="!model.donationCenterId" [class.is-invalid]="hour.errors && f.submitted" #hour="ngModel">
                                 <div class="invalid-feedback">
                                     You must complete this field.
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <label for="hourAppointment" class="form-label">Hour Appointment</label>
-                                <select name="hourAppointment" [disabled]="!model.appointmentDate"  id="hourAppointment" class="form-select" required [(ngModel)]="model.appointmentTime" [class.is-invalid]="time.errors && f.submitted" #time="ngModel">
+                                <select name="hourAppointment" [disabled]="!model.dateAppointment"  id="hourAppointment" class="form-select" required [(ngModel)]="model.hourAppointment" [class.is-invalid]="time.errors && f.submitted" #time="ngModel">
                                     <option value="">--</option>
                                     <option *ngFor="let hour of getAvailableHours()" [value]="hour">{{ hour }}</option>
                                 </select>
@@ -129,7 +129,7 @@
                     <b>Appointment Date and Time: </b> {{ model.getDateAndTime() }}
                 </div>
             </div>
-            <div class="row" id="continueToAppointments">
+            <div class="row" id="continueToAppointments" *ngIf="authenticated">
                 <a class="btn btn-success" routerLink="/donate-blood/my-appointments">Continue to My Appointments</a>
             </div>
         </div>
