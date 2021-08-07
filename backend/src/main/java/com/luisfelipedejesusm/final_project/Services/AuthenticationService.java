@@ -1,9 +1,11 @@
 package com.luisfelipedejesusm.final_project.Services;
 
+import com.luisfelipedejesusm.final_project.DTOs.Models.UserDTO;
 import com.luisfelipedejesusm.final_project.DTOs.Responses.JwtResponse;
 import com.luisfelipedejesusm.final_project.DTOs.Requests.LoginRequest;
 import com.luisfelipedejesusm.final_project.DTOs.Responses.MessageResponse;
 import com.luisfelipedejesusm.final_project.DTOs.Requests.RegisterRequest;
+import com.luisfelipedejesusm.final_project.Enums.EUserType;
 import com.luisfelipedejesusm.final_project.Jwt.JwtUtils;
 import com.luisfelipedejesusm.final_project.Enums.ERole;
 import com.luisfelipedejesusm.final_project.Models.Role;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -54,28 +57,30 @@ public class AuthenticationService {
         // Get authenticated user roles
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles
+                new UserDTO(userDetails.getUser())
         ));
     }
 
-    public ResponseEntity<?> registerUser(RegisterRequest registerData) {
+    public User registerUser(RegisterRequest registerData) {
+        return registerUser(registerData, EUserType.USER);
+    }
+
+    public User registerUser(RegisterRequest registerData, EUserType userType) {
         if (userRepository.existsByUsername(registerData.getUsername())){
-            return ResponseEntity.badRequest().body( new MessageResponse("Error: Username already exist") );
+            throw new RuntimeException("User with username [" + registerData.getUsername() + "] already exists");
         }
         if (userRepository.existsByEmail(registerData.getEmail())){
-            return ResponseEntity.badRequest().body( new MessageResponse("Error: Email already in use"));
+            throw new RuntimeException("User with email [" + registerData.getEmail() + "] already exists");
         }
         // Create new user
         User user = new User();
-        user.setName(registerData.getName());
+        user.setUserType(userType);
+        user.setFirstName(registerData.getName());
         user.setUsername(registerData.getUsername());
         user.setEmail(registerData.getEmail());
         user.setPassword(passwordEncoder.encode(registerData.getPassword()));
@@ -85,7 +90,6 @@ public class AuthenticationService {
                         new RuntimeException("Role not found"))
         );
         user.setRoles(roles);
-        userRepository.save(user);
-        return ResponseEntity.ok(new MessageResponse("User Registered Successfully"));
+        return userRepository.save(user);
     }
 }

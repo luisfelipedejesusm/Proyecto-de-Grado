@@ -2,6 +2,8 @@ package com.luisfelipedejesusm.final_project.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.luisfelipedejesusm.final_project.Enums.EBloodType;
+import com.luisfelipedejesusm.final_project.Enums.EUserType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,7 +29,7 @@ public class User {
     private Long id;
 
     @NotBlank
-    private String name;
+    private String firstName;
 
     @NotBlank
     @Size(max = 20)
@@ -42,13 +44,17 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    private String lastName;
+    private String phoneNumber;
+    private String address;
+    private EBloodType bloodType;
+
+    private EUserType userType;
+
     private Boolean isDonor;
 
-    // FIXME Add remaining user fields:
-    // - String lastname
-    // - Address address
-    // - EBloodType bloodGroup
-    // - String phoneNumber
+    private Double latitude;
+    private Double longitude;
 
     // List of donors the user has submitted a request for blood
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

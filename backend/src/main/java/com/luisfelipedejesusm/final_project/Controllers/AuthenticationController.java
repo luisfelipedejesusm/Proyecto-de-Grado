@@ -2,11 +2,13 @@ package com.luisfelipedejesusm.final_project.Controllers;
 
 import com.luisfelipedejesusm.final_project.DTOs.Requests.LoginRequest;
 import com.luisfelipedejesusm.final_project.DTOs.Requests.RegisterRequest;
+import com.luisfelipedejesusm.final_project.DTOs.Responses.MessageResponse;
 import com.luisfelipedejesusm.final_project.Services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.Message;
 import javax.validation.Valid;
 
 @RestController
@@ -23,7 +25,11 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> RegisterUser(@Valid @RequestBody RegisterRequest registerData){
-        return authenticationService.registerUser(registerData);
+    public MessageResponse RegisterUser(@Valid @RequestBody RegisterRequest registerData) throws Exception {
+        var res = authenticationService.registerUser(registerData);
+        if(res != null){
+            return new MessageResponse("User Registered Successfully");
+        }
+        return new MessageResponse("Username/Email already exists");
     }
 }

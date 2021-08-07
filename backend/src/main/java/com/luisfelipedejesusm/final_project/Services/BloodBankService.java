@@ -16,11 +16,11 @@ public class BloodBankService {
     @Autowired
     private BloodBankRepository bloodBankRepository;
 
-    public void createNewBloodBank(BloodBankRequest request) {
+    public Long createNewBloodBank(BloodBankRequest request) {
         BloodBank bloodBank = new BloodBank();
         bloodBank.setName(request.getName());
 
-        bloodBankRepository.save(bloodBank);
+        return bloodBankRepository.save(bloodBank).getId();
     }
 
     public List<BloodBank> getAllBloodBanks() {

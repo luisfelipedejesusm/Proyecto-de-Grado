@@ -10,11 +10,13 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/bloodbank")
+@RequestMapping("${endpoint}/bloodbank")
 public class BloodBankController {
 
     @Autowired
@@ -22,9 +24,12 @@ public class BloodBankController {
 
     @Secured({"ROLE_ADMIN", "ROLE_MODERATOR"})
     @PostMapping("")
-    public ResponseEntity<?> createNewBloodBank(@Valid @RequestBody BloodBankRequest request){
-        bloodBankService.createNewBloodBank(request);
-        return ResponseEntity.ok("Blood Bank Created Successfully");
+    public Map<String, Object> createNewBloodBank(@Valid @RequestBody BloodBankRequest request){
+        var id = bloodBankService.createNewBloodBank(request);
+        return new HashMap<String, Object>(Map.of(
+                "msg", "Created Successfully",
+                "id", id
+        ));
     }
 
     @GetMapping("")
