@@ -1,6 +1,8 @@
 .div-img{
     height: 300px;
-    background-size: cover;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
 }
 
 .btn-status{

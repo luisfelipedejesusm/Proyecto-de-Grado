@@ -5,6 +5,7 @@ import { User } from "./user.model";
 
 export class DonationAppointment implements Deserializable{
 
+    id!: number;
     userid!: Number;
     firstName!: String;
     lastName!: String;

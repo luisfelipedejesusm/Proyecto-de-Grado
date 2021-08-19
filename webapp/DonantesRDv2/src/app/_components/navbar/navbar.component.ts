@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { DataService } from 'src/app/_services/data.service';
 import { PermissionService } from 'src/app/_services/permission.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -14,8 +15,10 @@ export class NavbarComponent implements OnInit {
   shouldBeTransparent = true;
   authenticated = this.token.isLoggedIn();
 
+val = 0;
+
   // constructor(public element: ElementRef) {}
-  constructor(private router: Router, private token: TokenStorageService, private permissions: PermissionService){
+  constructor(private router: Router, private token: TokenStorageService, private permissions: PermissionService, public data: DataService){
     router.events.subscribe(val => {
       if(val instanceof NavigationEnd){
         if(val.url.indexOf('/signup') >= 0 || val.url.indexOf('/login') >= 0){

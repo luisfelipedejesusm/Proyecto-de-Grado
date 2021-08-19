@@ -19,7 +19,12 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Donation Center" prop="donationCenter.name">
+                <ngx-datatable-column name="User First Name" prop="user.firstName">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="User Last Name" prop="user.lastName">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
@@ -40,7 +45,7 @@
                 <ngx-datatable-column name="">
                     <ng-template ngx-datatable-cell-template let-row="row">
                         <div class="buttons-column">
-                            <button class="btn btn-danger" (click)="cancelAppointment(row.id)">Cancel</button>
+                            <button class="btn btn-danger" (click)="cancelAppointment(row.id)">Cancel Appointment</button>
                         </div>
                     </ng-template>
                 </ngx-datatable-column>

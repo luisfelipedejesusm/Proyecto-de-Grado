@@ -6,6 +6,7 @@ import { DonationAppointment } from 'src/app/_models/donation-apointment.model';
 import { DonationCenter } from 'src/app/_models/donation-center.model';
 import { User } from 'src/app/_models/user.model';
 import { AppointmentService } from 'src/app/_services/appointment.service';
+import { DataService } from 'src/app/_services/data.service';
 import { PermissionService } from 'src/app/_services/permission.service';
 import { ResourceService } from 'src/app/_services/resource.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
@@ -21,7 +22,8 @@ export class DonationAppointmentComponent implements OnInit, OnDestroy {
     private resource: ResourceService, 
     private appoinmentService: AppointmentService, 
     private permission: PermissionService,
-    private token: TokenStorageService) { }
+    private token: TokenStorageService,
+    public data: DataService) { }
 
   bloodgroups: String[] = this.resource.getBloodGroups();
   donationCenters: DonationCenter[] = [];
@@ -41,6 +43,9 @@ export class DonationAppointmentComponent implements OnInit, OnDestroy {
         this.donationCenters = response;
       })
     );
+
+    this.data.val += 1;
+    console.log(this.data.val)
 
     if(this.authenticated){
       let user: User = this.token.getUser();

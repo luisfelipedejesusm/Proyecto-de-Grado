@@ -40,6 +40,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from "../environments/environment";
 import { CampaingsComponent } from './_components/campaings/campaings.component';
+import { DcAppointmentsComponent } from './_components/dc-appointments/dc-appointments.component';
 
 
 
@@ -65,7 +66,8 @@ import { CampaingsComponent } from './_components/campaings/campaings.component'
     EditProfileComponent,
     DonationCenterModalComponent,
     NewCampaignComponent,
-    CampaingsComponent
+    CampaingsComponent,
+    DcAppointmentsComponent
   ],
   imports: [
     BrowserModule,

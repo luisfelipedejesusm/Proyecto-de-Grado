@@ -20,4 +20,13 @@ export class AppointmentService {
   getMyAppointments(): Observable<DonationAppointment[]> {
     return this.http.get<DonationAppointment[]>(this.shared.getApiUrl() + 'appointment/my-appointments/' + this.token.getUser().id);
   }
+
+  getDcAppointments(): Observable<DonationAppointment[]> {
+    return this.http.get<DonationAppointment[]>(this.shared.getApiUrl() + 'donation-center/appointments');
+  }
+
+  cancelAppointment(id: any): Observable<any>{
+    return this.http.post(this.shared.getApiUrl() + 'appointment/cancel/' + id, {});
+  }
+
 }

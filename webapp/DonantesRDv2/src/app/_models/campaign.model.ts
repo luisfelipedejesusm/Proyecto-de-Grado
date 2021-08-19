@@ -6,12 +6,15 @@ export class Campaign implements Deserializable{
     name!: string;
     campaignType!: string;
     description!: string;
-    imageUrl: string = "../../../assets/images/placeholder.jpeg";
+    photoUrl: string = "../../../assets/images/placeholder.jpeg";
 
     bloodType: string = "";
     target!: number;
     expiration!: string;
 
+    donationsReceived!: number;
+
+    isOpen: boolean = true;
 
 
     deserialize(input: any): this {

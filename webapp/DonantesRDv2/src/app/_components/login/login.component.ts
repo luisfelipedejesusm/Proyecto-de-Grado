@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/_services/data.service';
 import { AuthService } from '../../_services/auth.service';
 import { TokenStorageService } from '../../_services/token-storage.service';
 
@@ -9,7 +10,7 @@ import { TokenStorageService } from '../../_services/token-storage.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor( private authService: AuthService, private tokenStorage: TokenStorageService, public data: DataService) { }
 
   form: any = {
     username: null,
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenStorage.getUser().roles;
       this.username = this.tokenStorage.getUser().username;
     }
+
   }
 
   onSubmit(): void{
