@@ -1,0 +1,32 @@
+<div class="container content">
+    <div class="row">
+
+        <div class="col-lg-4 col-sm-12" *ngFor="let c of campaigns">
+            <div class="card">
+                <div [ngStyle]="{'background': 'url(' + c.photoUrl + ')'}" class="div-img"></div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ c.name }}</h5>
+                    <p class="card-text">{{ c.description }}</p>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <small>
+                                <span *ngIf="c.target && c.target > 0"><b>Target: </b>0/{{ c.target }} Pintas <br></span>
+                                <span *ngIf="c.expiration"><b>Date End:  </b> {{ c.expiration }} <br></span>
+                                <b>Donations Recieved: </b> {{ c.donationsReceived }}
+                            </small>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn btn-status" [ngClass]="{'btn-success': c.isOpen, 'btn-danger': !c.isOpen}" (click)="changeActive(c)" >
+                                <span *ngIf="c.isOpen">Active</span>
+                                <span *ngIf="!c.isOpen">Inactive</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</div>

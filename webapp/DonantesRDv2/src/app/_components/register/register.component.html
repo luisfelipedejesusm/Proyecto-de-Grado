@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <!-- The image half -->
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+
+        <!-- The content half -->
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="display-4">DonantesRD</h3>
+                            <p class="text-muted mb-4">Registro de nuevo usuario</p>
+                            <form
+                                *ngIf="!isSuccessful"
+                                name="form"
+                                (ngSubmit)="f.form.valid && onSubmit()"
+                                #f="ngForm"
+                                novalidate
+                            >
+                                <div class="form-group mb-3">
+                                    <input [(ngModel)]="form.name" minlength="3" #name="ngModel" name="name" type="text" placeholder="Nombre" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <div class="alert-danger" *ngIf="name.errors && f.submitted">
+                                        <div *ngIf="name.errors.required">Name is required</div>
+                                        <div *ngIf="name.errors.minlength">Name must be at least 3 characters</div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input [(ngModel)]="form.username" minlength="3" maxlength="20" #username="ngModel" name="username" type="text" placeholder="Usuario" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                                        <div *ngIf="username.errors.required">Username is required</div>
+                                        <div *ngIf="username.errors.minlength">Username must be at least 3 characters</div>
+                                        <div *ngIf="username.errors.maxlength">Username must be at most 20 characters</div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input [(ngModel)]="form.email" email #email="ngModel" name="email" type="email" placeholder="Direccion de Email" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                                        <div *ngIf="email.errors.required">Email is required</div>
+                                        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input [(ngModel)]="form.password" minlength="6" #password="ngModel" name="password" type="password" placeholder="Contraseña" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                                        <div *ngIf="password.errors.required">Password is required</div>
+                                        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                                    </div>
+                                </div>
+                                <!-- <div class="custom-control custom-checkbox mb-3">
+                                    <input id="customCheck1" type="checkbox" checked class="custom-control-input">
+                                    <label for="customCheck1" class="custom-control-label">Remember password</label>
+                                </div> -->
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Registrarme!</button>
+                            
+                                <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                                    Signup failed!<br />{{ errorMessage }}
+                                  </div>
+                            </form>
+
+                            <div class="alert alert-success" *ngIf="isSuccessful">
+                                Your registration is successful!
+                              </div>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
+            </div>
+        </div><!-- End -->
+
+    </div>
+</div>

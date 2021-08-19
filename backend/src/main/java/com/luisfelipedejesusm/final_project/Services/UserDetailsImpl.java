@@ -21,23 +21,24 @@ public class UserDetailsImpl implements UserDetails {
     private String email;
 
     @JsonIgnore
+    private User user;
+
+    @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String email, String password,
+    public UserDetailsImpl(User user,
                            Collection<? extends GrantedAuthority> authorities){
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.user = user;
         this.authorities = authorities;
     }
 
     public User getUser(){
-        User user = new User();
-        user.setId(this.id);
-        user.setUsername(this.username);
         return user;
     }
 
@@ -52,10 +53,7 @@ public class UserDetailsImpl implements UserDetails {
                 .collect(Collectors.toList());
 
         return new UserDetailsImpl(
-                user.getId(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword(),
+                user,
                 authorities
         );
     }

@@ -8,7 +8,8 @@ public enum EBloodType {
     O_NEGATIVE("O-"),
     O_POSITIVE("O+"),
     AB_NEGATIVE("AB-"),
-    AB_POSITIVE("AB+");
+    AB_POSITIVE("AB+"),
+    ALL("ALL");
 
     private String name;
 

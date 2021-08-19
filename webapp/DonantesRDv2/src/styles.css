@@ -1,0 +1,78 @@
+/* @import '~@swimlane/ngx-datatable/index.css'; */
+/* @import '~@swimlane/ngx-datatable/themes/material.scss'; */
+/* @import '~@swimlane/ngx-datatable/themes/dark.scss'; */
+/* @import '~@swimlane/ngx-datatable/themes/bootstrap.scss'; */
+/* @import '~@swimlane/ngx-datatable/assets/icons.css'; */
+
+body{
+
+    font-size: 14px;
+    background-image: url("../src/assets/images/logo.png");
+}
+
+div.content{
+    margin-top: 100px;
+    padding: 20px 50px 60px 50px;
+}
+
+.buttons-column button{
+    margin: 0 2px;
+    float: right;
+}
+
+.color-white{
+    color: white;
+}
+
+.color-red{
+    color: #e42134;
+}
+
+/* .modal-dialog {
+    min-width: calc(100vw - 500px)
+} */
+
+.pac-container { z-index: 1000000 !important; }
+
+.card{
+    border-radius: 0;
+    box-shadow: 0 0 5px #776f6f85;
+}
+
+.card-header, 
+.card-footer{
+    background-color: #e42134;
+    color: white;
+    margin: 0 -1px;
+    padding: 1rem;
+}
+
+.form-control:focus, 
+.form-select:focus, 
+.form-check-input:focus{
+    border-color: #e3213461;
+    box-shadow: 0 0 0 0.25rem #e3213440;
+}
+
+label{
+    font-weight: bold;
+}
+
+.form-check-input:checked{
+    background-color: #e42134;
+    border-color: #e42134;
+}
+
+.btn{
+    font-size: 14px;
+}
+
+.card-footer{
+    padding: 0 !important;
+    border: 0;
+}
+
+.card-footer .btn{
+    border-radius: 0;
+    padding: 1rem;
+}

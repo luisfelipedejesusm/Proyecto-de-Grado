@@ -1,0 +1,56 @@
+<div class="container content">
+    <div class="row">
+        <div class="col-lg-12">
+            <ngx-datatable
+                #datatable
+                class="material"
+                [headerHeight]="50"
+                [limit]="10"
+                [columnMode]="'force'"
+                [footerHeight]="50"
+                rowHeight="auto"    
+                [rows]="donationCenters"
+            >
+
+                <ngx-datatable-column name="Name">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Address">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Username">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Email">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="">
+                    <ng-template ngx-datatable-cell-template let-row="row">
+                        <div class="buttons-column">
+                            <button class="btn btn-danger" (click)="remove(row)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-warning" (click)="update(row)"><i class="fa fa-pen color-white"></i></button>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-success btn-lg float-button-rounded" (click)="open()"><i class="fa fa-plus"></i></button>
+
+<!-- <app-donation-center-modal (newCenter)="newDonationCenter($event)" ></app-donation-center-modal> -->

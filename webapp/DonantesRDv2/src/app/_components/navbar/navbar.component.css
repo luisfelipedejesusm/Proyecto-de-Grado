@@ -1,0 +1,5 @@
+@import url("../../../assets/styles/homepage.css");
+
+#logout-btn{
+    cursor: pointer;
+}

@@ -1,0 +1,72 @@
+<div class="container content">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="card">
+                <div class="card-header">
+                    <h5>New Campaign</h5>
+                </div>
+                <div class="card-body">
+                    <form action="" (ngSubmit)="f.form.valid && newCampaign()" #f="ngForm" novalidate>
+                        <div class="row mb-4">
+                            <div class="col-lg-8 col-sm-12">
+                                <label for="name" class="form-label">Nombre de la Campaña</label>
+                                <input [(ngModel)]="model.name" #name="ngModel" name="name" type="text" class="form-control" required [class.is-invalid]="name.errors && f.submitted">
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <label for="campaignType" class="form-label">Tipo de Campaña</label>
+                                <select name="campaignType" id="campaignType"  class="form-select" [(ngModel)]="model.campaignType" required [class.is-invalid]="campaignType.errors && f.submitted" #campaignType="ngModel">
+                                    <option value="">--</option>
+                                    <option value="INDIVIDUAL">Persona Individual</option>
+                                    <option value="GROUP">Grupo de Donacion</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-lg-8 col-sm-12">
+                                <label for="description" class="form-label">Descripcion</label>
+                                <textarea [(ngModel)]="model.description" #description="ngModel" name="description" class="form-control" rows="5" required [class.is-invalid]="description.errors && f.submitted"></textarea>
+                                <div class="invalid-feedback">
+                                    You must complete this field.
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <input type="file" id="file" name="img" #campaignPhoto (change)="uploadCampaignPhoto($event)" autocomplete="off" [hidden]="true"  accept=".png, .jpg, .jpeg">
+                                <div [style.background-image]="'url('+model.photoUrl+')'" class="bg-img">
+                                    <button class="btn btn-success updateImage" type="button" (click)="campaignPhoto.click()"><i class="fa fa-edit"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mb-4">
+                            <div class="col-lg-4 col-sm-12">
+                                <label for="description" class="form-label">Tipo de Sangre Requerida</label>
+                                <select name="bloodType" id="bloodType" class="form-select"  [(ngModel)]="model.bloodType" [class.is-invalid]="bloodType.errors && f.submitted" #bloodType="ngModel">
+                                    <option value="ALL" selected>Cualquier Tipo</option>
+                                    <option *ngFor="let group of bloodgroups" [value]="group">{{ group }}</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <label for="target" class="form-label">Cantidad de Pintas Necesarias</label>
+                                <input [(ngModel)]="model.target" #target="ngModel" name="target" type="number" class="form-control" placeholder="Dejar en blanco si no aplica" [class.is-invalid]="target.errors && f.submitted">
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <label for="expiration" class="form-label">Fecha Limite</label>
+                                <input [(ngModel)]="model.expiration" #expiration="ngModel" name="expiration" type="date" class="form-control" placeholder="Dejar en blanco si no aplica" [class.is-invalid]="expiration.errors && f.submitted">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success" (click)="f.onSubmit($event)">Create Campaign!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="container emp-profile content">
+    <!-- <form method="post"> -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="https://www.carparison.com.au/themes/front/images/user-profile.png" class="profile-img"/>
+                    <!-- <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file"/>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        {{ user.getFullName() }}
+                    </h5>
+                    <h6>
+                        {{ user.bloodType }}
+                    </h6>
+                    <p class="proile-rating">
+                        Last Donation : <span> {{ lastDonation.getDateAndTime() || "" }} </span> <br>
+                        Donation Center : <span> {{ ((lastDonation || {}).donationCenter || {}).name || "" }}</span>
+                    </p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a routerLink="edit" class="profile-edit-btn btn" name="btnAddMore">Edit Profile</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 map">
+                <agm-map [latitude]="user.latitude" [longitude]="user.longitude" [zoom]="17" [hidden]="!user.isDonor" [clickableIcons]="false">
+                    <agm-marker [latitude]="user.latitude" [longitude]="user.longitude" [markerDraggable]="false"></agm-marker>
+                </agm-map>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>First Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.firstName }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Last Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.lastName }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.email }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.phoneNumber | mask: '(000) 000 0000' }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.address }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Blood Type</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.bloodType }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Is a Public Donnor</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.isDonor? 'Yes' : 'No' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </form>            -->
+</div>

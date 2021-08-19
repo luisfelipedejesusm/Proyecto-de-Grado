@@ -1,15 +1,18 @@
 package com.luisfelipedejesusm.final_project.Controllers;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.function.EntityResponse;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/v1/test")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class IndexController {
 
-    @PostMapping("index")
-    public String Index(){
-        return "Welcome to my Grade project :)";
+    @GetMapping("index")
+    public ResponseEntity<?> Index(){
+        return ResponseEntity.ok(Map.of("data", "Welcome to my Grade project :)"));
     }
 }

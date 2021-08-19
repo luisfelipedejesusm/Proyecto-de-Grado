@@ -1,0 +1,24 @@
+@import url("../../../assets/styles/homepage.css");
+
+.icon-s{
+    font-size: 4rem;
+    color: #e4213480;
+}
+.portfolio-box{
+    background-size: cover;
+    height: 300px;
+}
+
+agm-map {
+    height: 400px;
+}
+
+#map{
+    /* padding-top: 8rem; */
+    padding-bottom: 2rem;
+}
+  
+.div-img{
+    height: 300px;
+    background-size: cover;
+}

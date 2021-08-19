@@ -1,0 +1,12 @@
+.card.card-clickable{
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+.card.card-clickable:hover{
+    box-shadow: 0px 5px 5px rgba(83, 79, 79, 0.349);
+}
+
+.card-title{
+    font-weight: bold;
+}

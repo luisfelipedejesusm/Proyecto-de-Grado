@@ -1,21 +1,17 @@
 package com.luisfelipedejesusm.final_project.Services;
 
-import com.luisfelipedejesusm.final_project.DTOs.DonorRequestPayload;
-import com.luisfelipedejesusm.final_project.DTOs.MessageResponse;
+import com.luisfelipedejesusm.final_project.DTOs.Responses.DonorRequestPayload;
+import com.luisfelipedejesusm.final_project.DTOs.Responses.MessageResponse;
 import com.luisfelipedejesusm.final_project.DTOs.Responses.DonorRequestResponse;
-import com.luisfelipedejesusm.final_project.Enums.EBloodType;
 import com.luisfelipedejesusm.final_project.Models.DonorRequest;
 import com.luisfelipedejesusm.final_project.Models.User;
 import com.luisfelipedejesusm.final_project.Repositories.DonorRequestRepository;
 import com.luisfelipedejesusm.final_project.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.Map;
 
 @Service
