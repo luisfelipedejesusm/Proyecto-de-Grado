@@ -2,10 +2,12 @@ package com.luisfelipedejesusm.final_project.Controllers;
 
 import com.luisfelipedejesusm.final_project.DTOs.Models.BloodBankDTO;
 import com.luisfelipedejesusm.final_project.DTOs.Models.DonationCenterDTO;
+import com.luisfelipedejesusm.final_project.DTOs.Models.DonationDTO;
 import com.luisfelipedejesusm.final_project.DTOs.Requests.BloodBankRequest;
 import com.luisfelipedejesusm.final_project.DTOs.Requests.DonationCenterRequest;
 import com.luisfelipedejesusm.final_project.DTOs.Responses.MessageResponse;
 import com.luisfelipedejesusm.final_project.Models.BloodBank;
+import com.luisfelipedejesusm.final_project.Models.Donation;
 import com.luisfelipedejesusm.final_project.Models.DonationCenter;
 import com.luisfelipedejesusm.final_project.Services.BloodBankService;
 import com.luisfelipedejesusm.final_project.Services.DonationCenterService;
@@ -57,4 +59,11 @@ public class DonationCenterController {
         donationCenterService.deleteDonationCenter(id);
         return new MessageResponse("Donation Center Updated Successfully");
     }
+
+    @GetMapping("appointments")
+    public List<DonationDTO> getAllAppointments(){
+        List<Donation> donationCenters = donationCenterService.getAllAppointments();
+        return donationCenters.stream().map(DonationDTO::new).collect(Collectors.toList());
+    }
+
 }

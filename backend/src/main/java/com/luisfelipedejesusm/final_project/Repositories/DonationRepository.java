@@ -11,7 +11,7 @@ import java.util.List;
 public interface DonationRepository extends JpaRepository<Donation, Long> {
     List<Donation> findAllByDonationCenter(DonationCenter donationCenter);
 
-    List<Donation> findAllByUser(User user);
+    DonationDTO findFirstByUserAndCancelledOrderByIdAsc(User user, boolean b);
 
-    DonationDTO findFirstByUserOrderByIdAsc(User user);
+    List<Donation> findAllByUserAndCancelled(User user, boolean b);
 }

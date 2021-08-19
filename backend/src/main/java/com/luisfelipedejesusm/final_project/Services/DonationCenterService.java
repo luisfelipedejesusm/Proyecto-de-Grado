@@ -7,10 +7,13 @@ import com.luisfelipedejesusm.final_project.DTOs.Requests.RegisterRequest;
 import com.luisfelipedejesusm.final_project.DTOs.Responses.AppointmentDateAndTime;
 import com.luisfelipedejesusm.final_project.Enums.EUserType;
 import com.luisfelipedejesusm.final_project.Models.BloodBank;
+import com.luisfelipedejesusm.final_project.Models.Donation;
 import com.luisfelipedejesusm.final_project.Models.DonationCenter;
 import com.luisfelipedejesusm.final_project.Repositories.BloodBankRepository;
 import com.luisfelipedejesusm.final_project.Repositories.DonationCenterRepository;
+import com.luisfelipedejesusm.final_project.Repositories.DonationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +25,9 @@ public class DonationCenterService {
 
     @Autowired
     private AuthenticationService authenticationService;
+
+    @Autowired
+    private DonationRepository donationRepository;
 
     public Long createNewDonationCenter(DonationCenterRequest request) {
 
@@ -64,4 +70,10 @@ public class DonationCenterService {
             donationCenterRepository.deleteById(id);
     }
 
+    public List<Donation> getAllAppointments() {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        DonationCenter donationCenter = donationCenterRepository.findByUserId(userDetails.getId());
+
+        return donationRepository.findAllByDonationCenter(donationCenter);
+    }
 }

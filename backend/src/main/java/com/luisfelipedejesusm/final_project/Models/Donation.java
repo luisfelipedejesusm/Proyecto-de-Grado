@@ -53,4 +53,6 @@ public class Donation {
     @JoinColumn(name = "campaign_id")
     private Campaign campaign;
 
+    private boolean cancelled = false;
+
 }

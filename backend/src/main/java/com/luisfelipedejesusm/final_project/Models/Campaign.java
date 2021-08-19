@@ -24,6 +24,8 @@ public class Campaign {
     private String name;
     private ECampaignType campaignType;
     private String description;
+
+    @Lob
     private String photoUrl;
     private EBloodType bloodType;
     private Boolean isOpen = true;

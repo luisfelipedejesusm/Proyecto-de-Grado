@@ -49,4 +49,10 @@ public class AppointmentController {
     public List<AppointmentDateAndTime> getListOfDonationCenterAppointmentDates(@PathVariable Long id){
         return appointmentService.getDonationCenterAppointmentsDate(id);
     }
+
+    @PostMapping("/cancel/{id}")
+    public MessageResponse cancelAppointment(@PathVariable Long id){
+        appointmentService.cancel(id);
+        return new MessageResponse("Done");
+    }
 }

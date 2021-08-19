@@ -61,11 +61,19 @@ public class AppointmentService {
     }
 
     public List<Donation> getUserAppointments(Long userid) {
-        return donationRepository.findAllByUser(new User(userid));
+        return donationRepository.findAllByUserAndCancelled(new User(userid), false);
     }
 
     public DonationDTO getUserLastAppointment(Long id) {
         // TODO: Arreglar este desastre, debe ser el ultimo donation appointment al que fue
-        return donationRepository.findFirstByUserOrderByIdAsc(new User(id));
+        return donationRepository.findFirstByUserAndCancelledOrderByIdAsc(new User(id), false);
+    }
+
+    public void cancel(Long id) {
+        var donation = donationRepository.findById(id).orElse(null);
+        if(donation != null){
+            donation.setCancelled(true);
+            donationRepository.save(donation);
+        }
     }
 }

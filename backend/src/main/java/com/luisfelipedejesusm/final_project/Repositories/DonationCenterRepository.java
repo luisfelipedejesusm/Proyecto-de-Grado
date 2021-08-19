@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DonationCenterRepository extends JpaRepository<DonationCenter, Long> {
+    DonationCenter findByUserId(Long id);
 }
