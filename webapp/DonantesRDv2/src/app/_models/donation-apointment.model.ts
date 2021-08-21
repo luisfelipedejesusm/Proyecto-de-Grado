@@ -25,6 +25,7 @@ export class DonationAppointment implements Deserializable{
     referenceNumber!: String;
 
     user!: User;
+    campaignId: number | null = null;
 
     constructor(){
         this.donationCenter = new DonationCenter();

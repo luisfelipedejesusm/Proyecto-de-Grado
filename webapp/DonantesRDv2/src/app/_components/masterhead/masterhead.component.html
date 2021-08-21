@@ -159,36 +159,13 @@
         <h2 class="text-center mt-0">Unete y aporta, ellos necesitan de tu sangre!</h2>
         <hr class="divider" />
         <div class="row gx-4 gx-lg-5">
-            <div class="col-lg-4 col-sm-12">
+            <div class="col-lg-4 col-sm-12" *ngFor="let c of campaigns">
                 <div class="card">
-                    <div style="background-image: url('https://cdn.pixabay.com/photo/2015/11/20/17/29/person-1053543_960_720.jpg');" class="div-img"></div>
-                    <!-- <img src="https://cdn.pixabay.com/photo/2015/11/20/17/29/person-1053543_960_720.jpg" class="card-img-top" alt="..."> -->
+                    <div [ngStyle]="{'background': 'url(' + c.photoUrl + ')'}" class="div-img"></div>
                     <div class="card-body">
-                        <h5 class="card-title">Sarah Guzman</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis optio consequuntur nisi accusantium laborum facilis, rem maiores qui id? Temporibus, dicta! Ratione minima quasi asperiores ipsa iure consequatur provident voluptates!</p>
-                        <a href="#" class="btn btn-primary" style="float: right;">Donate!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="card">
-                    <div style="background-image: url('https://www.incimages.com/uploaded_files/image/1920x1080/getty_481292845_77896.jpg');" class="div-img"></div>
-                    <!-- <img src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_481292845_77896.jpg" class="card-img-top" alt="..."> -->
-                    <div class="card-body">
-                        <h5 class="card-title">Sarah Guzman</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis optio consequuntur nisi accusantium laborum facilis, rem maiores qui id? Temporibus, dicta! Ratione minima quasi asperiores ipsa iure consequatur provident voluptates!</p>
-                        <a href="#" class="btn btn-primary" style="float: right;">Donate!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="card">
-                    <div style="background-image: url('https://dss.mo.gov/child-support/img/custodial-parents-tile.png');" class="div-img"></div>
-                    <!-- <img src="https://dss.mo.gov/child-support/img/custodial-parents-tile.png" class="card-img-top" alt="..."> -->
-                    <div class="card-body">
-                        <h5 class="card-title">Sarah Guzman</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis optio consequuntur nisi accusantium laborum facilis, rem maiores qui id? Temporibus, dicta! Ratione minima quasi asperiores ipsa iure consequatur provident voluptates!</p>
-                        <a href="#" class="btn btn-primary" style="float: right;">Donate!</a>
+                        <h5 class="card-title">{{ c.name }}</h5>
+                        <p class="card-text">{{ c.description }}</p>
+                        <button class="btn btn-primary" style="float: right;" (click)="donateWithCampaign(c)">Donate!</button>
                     </div>
                 </div>
             </div>

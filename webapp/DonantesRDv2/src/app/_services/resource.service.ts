@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Campaign } from '../_models/campaign.model';
 import { DateAndTime } from '../_models/date-and-time.model';
 import { DonationCenter } from '../_models/donation-center.model';
 import { User } from '../_models/user.model';
@@ -35,5 +36,9 @@ export class ResourceService {
       workingHours.push(`${i < 10? "0" + i: i}:30`);
     }
     return workingHours;
+  }
+
+  getLastCampaigns(): Observable<Campaign[]>{
+    return this.http.get<Campaign[]>(this.shared.getApiUrl() + "public/lastCampaigns");
   }
 }

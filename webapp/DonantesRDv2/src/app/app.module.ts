@@ -41,6 +41,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from "../environments/environment";
 import { CampaingsComponent } from './_components/campaings/campaings.component';
 import { DcAppointmentsComponent } from './_components/dc-appointments/dc-appointments.component';
+import { WebSocketService } from './_services/web-socket.service';
 
 
 
@@ -86,7 +87,7 @@ import { DcAppointmentsComponent } from './_components/dc-appointments/dc-appoin
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
   ],
-  providers: [authInterceptorProviders, AdminGuardService, AuthGuardService, UnAuthGuardService, UserGuardService, DonationCenterGuardService],
+  providers: [authInterceptorProviders, AdminGuardService, AuthGuardService, UnAuthGuardService, UserGuardService, DonationCenterGuardService, WebSocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { } 
