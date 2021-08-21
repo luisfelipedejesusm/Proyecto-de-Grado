@@ -11,15 +11,15 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <small>
-                                <span *ngIf="c.target && c.target > 0"><b>Target: </b>0/{{ c.target }} Pintas <br></span>
-                                <span *ngIf="c.expiration"><b>Date End:  </b> {{ c.expiration }} <br></span>
-                                <b>Donations Recieved: </b> {{ c.donationsReceived }}
+                                <span *ngIf="c.target && c.target > 0"><b>Objetivo: </b>0/{{ c.target }} Pintas <br></span>
+                                <span *ngIf="c.expiration"><b>Fecha de Cierre:  </b> {{ c.expiration }} <br></span>
+                                <b>Donaciones Recibidas: </b> {{ c.donationsReceived }}
                             </small>
                         </div>
                         <div class="col-lg-4">
                             <button class="btn btn-status" [ngClass]="{'btn-success': c.isOpen, 'btn-danger': !c.isOpen}" (click)="changeActive(c)" >
-                                <span *ngIf="c.isOpen">Active</span>
-                                <span *ngIf="!c.isOpen">Inactive</span>
+                                <span *ngIf="c.isOpen">Activa</span>
+                                <span *ngIf="!c.isOpen">Inactiva</span>
                             </button>
                         </div>
                     </div>

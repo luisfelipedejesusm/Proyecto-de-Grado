@@ -12,19 +12,19 @@
                 [rows]="donationCenters"
             >
 
-                <ngx-datatable-column name="Name">
+                <ngx-datatable-column prop="name" name="Nombre del Centro">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Address">
+                <ngx-datatable-column prop="address" name = "Ubicación del Centro">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Username">
+                <ngx-datatable-column prop="username" name = "Nombre de Usuario">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>

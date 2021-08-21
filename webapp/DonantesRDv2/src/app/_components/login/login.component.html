@@ -23,24 +23,24 @@
                                 <div class="form-group mb-3">
                                     <input [(ngModel)]="form.username" minlength="3" maxlength="20" #username="ngModel" name="username" type="text" placeholder="Usuario" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
                                     <div class="alert-danger" *ngIf="username.errors && f.submitted">
-                                        <div *ngIf="username.errors.required">Username is required</div>
+                                        <div *ngIf="username.errors.required">Se requiere nombre de usuario.</div>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input [(ngModel)]="form.password" minlength="6" #password="ngModel" name="password" type="password" placeholder="Contraseña" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                     <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                                        <div *ngIf="password.errors.required">Password is required</div>
+                                        <div *ngIf="password.errors.required">Se requiere contraseña.</div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
                             
                                 <div class="alert alert-warning" *ngIf="f.submitted && isLoginFailed">
-                                    Login failed!<br />{{ errorMessage }}
+                                    Error al iniciar sesión!<br />{{ errorMessage }}
                                   </div>
                             </form>
 
                             <div class="alert alert-success" *ngIf="isLoggedIn">
-                                Logged in as {{ username }} with privileges: {{ roles }}.
+                                Logueado como {{ username }} con privilegio: {{ roles }}.
                             </div>
                         </div>
                     </div>
