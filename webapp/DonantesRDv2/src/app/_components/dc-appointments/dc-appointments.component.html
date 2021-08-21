@@ -13,30 +13,30 @@
                 [rows]="myAppointments"
             >
 
-                <ngx-datatable-column name="Reference Number" prop="id">
+                <ngx-datatable-column name="Número de Referencia" prop="id">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }} 
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="User First Name" prop="user.firstName">
+                <ngx-datatable-column name="Nombre del Usuario" prop="user.firstName">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="User Last Name" prop="user.lastName">
-                    <ng-template ngx-datatable-cell-template let-val="value">
-                        {{ val }}
-                    </ng-template>
-                </ngx-datatable-column>
-
-                <ngx-datatable-column name="Appointment Date" prop="dateAppointment">
+                <ngx-datatable-column name="Apellido del Usuario" prop="user.lastName">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Appointment Time" prop="hourAppointment">
+                <ngx-datatable-column name="Fecha de la Cita" prop="dateAppointment">
+                    <ng-template ngx-datatable-cell-template let-val="value">
+                        {{ val }}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Hora de la Cita" prop="hourAppointment">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
@@ -45,7 +45,7 @@
                 <ngx-datatable-column name="">
                     <ng-template ngx-datatable-cell-template let-row="row">
                         <div class="buttons-column">
-                            <button class="btn btn-danger" (click)="cancelAppointment(row.id)">Cancel Appointment</button>
+                            <button class="btn btn-danger" (click)="cancelAppointment(row.id)">Cancelar Cita</button>
                         </div>
                     </ng-template>
                 </ngx-datatable-column>

@@ -23,30 +23,30 @@
                                 <div class="form-group mb-3">
                                     <input [(ngModel)]="form.name" minlength="3" #name="ngModel" name="name" type="text" placeholder="Nombre" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
                                     <div class="alert-danger" *ngIf="name.errors && f.submitted">
-                                        <div *ngIf="name.errors.required">Name is required</div>
-                                        <div *ngIf="name.errors.minlength">Name must be at least 3 characters</div>
+                                        <div *ngIf="name.errors.required">Se requiere un nombre.</div>
+                                        <div *ngIf="name.errors.minlength">El nombre debe contener al menos 3 caracteres.</div>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input [(ngModel)]="form.username" minlength="3" maxlength="20" #username="ngModel" name="username" type="text" placeholder="Usuario" required autofocus class="form-control rounded-pill border-0 shadow-sm px-4">
                                     <div class="alert-danger" *ngIf="username.errors && f.submitted">
-                                        <div *ngIf="username.errors.required">Username is required</div>
-                                        <div *ngIf="username.errors.minlength">Username must be at least 3 characters</div>
-                                        <div *ngIf="username.errors.maxlength">Username must be at most 20 characters</div>
+                                        <div *ngIf="username.errors.required">Se requiere nombre de usuario.</div>
+                                        <div *ngIf="username.errors.minlength">El nombre de usuario debe contener al menos 3 caracteres.</div>
+                                        <div *ngIf="username.errors.maxlength">El nombre de usuario debe tener como máximo 20 caracteres.</div>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input [(ngModel)]="form.email" email #email="ngModel" name="email" type="email" placeholder="Direccion de Email" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                     <div class="alert-danger" *ngIf="email.errors && f.submitted">
-                                        <div *ngIf="email.errors.required">Email is required</div>
-                                        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                                        <div *ngIf="email.errors.required">El correo electrónico es requerido.</div>
+                                        <div *ngIf="email.errors.email">El correo electrónico debe ser una dirección de correo electrónico válida.</div>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input [(ngModel)]="form.password" minlength="6" #password="ngModel" name="password" type="password" placeholder="Contraseña" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                     <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                                        <div *ngIf="password.errors.required">Password is required</div>
-                                        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                                        <div *ngIf="password.errors.required">Se requiere contraseña.</div>
+                                        <div *ngIf="password.errors.minlength">La contraseña debe tener al menos 6 caracteres. </div>
                                     </div>
                                 </div>
                                 <!-- <div class="custom-control custom-checkbox mb-3">

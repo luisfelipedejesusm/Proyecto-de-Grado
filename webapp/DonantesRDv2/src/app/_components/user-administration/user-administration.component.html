@@ -13,19 +13,19 @@
                 [rows]="users"
             >
 
-                <ngx-datatable-column name="FirstName">
+                <ngx-datatable-column prop="firstName" name="Nombre">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="LastName">
+                <ngx-datatable-column prop="lastName" name="Apellidos">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Username">
+                <ngx-datatable-column prop="username" name="Nombre de Usuario">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
@@ -37,7 +37,7 @@
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="IsDonor">
+                <ngx-datatable-column name="isDonor" name="¿Es donante?" >
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val? 'Yes' : 'No' }}
                     </ng-template>

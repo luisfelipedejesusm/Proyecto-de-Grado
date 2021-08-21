@@ -13,25 +13,25 @@
                 [rows]="myAppointments"
             >
 
-                <ngx-datatable-column name="Reference Number" prop="id">
+                <ngx-datatable-column name="Número de Referencia" prop="id">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }} 
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Donation Center" prop="donationCenter.name">
+                <ngx-datatable-column name="Centro de Donación" prop="donationCenter.name">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Appointment Date" prop="dateAppointment">
+                <ngx-datatable-column name="Fecha de la Cita" prop="dateAppointment">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
                 </ngx-datatable-column>
 
-                <ngx-datatable-column name="Appointment Time" prop="hourAppointment">
+                <ngx-datatable-column name="Hora de la Cita" prop="hourAppointment">
                     <ng-template ngx-datatable-cell-template let-val="value">
                         {{ val }}
                     </ng-template>
@@ -40,7 +40,7 @@
                 <ngx-datatable-column name="">
                     <ng-template ngx-datatable-cell-template let-row="row">
                         <div class="buttons-column">
-                            <button class="btn btn-danger" (click)="cancelAppointment(row.id)">Cancel</button>
+                            <button class="btn btn-danger" (click)="cancelAppointment(row.id)">Cancelar</button>
                         </div>
                     </ng-template>
                 </ngx-datatable-column>

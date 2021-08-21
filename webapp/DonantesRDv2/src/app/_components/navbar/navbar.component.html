@@ -5,17 +5,17 @@
         <div class="collapse navbar-collapse" id="navbarResponsive" *ngIf="shouldShow">
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
 
-                <li class="nav-item"><a class="nav-link" [routerLink]="ifAuth('donate-blood', 'donate-blood/appointment')" *ngIf="usertype('USER') || usertype('')">Donate Blood</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="administration" *ngIf="authenticated && hasPermision('ROLE_ADMIN') && usertype('USER')">Administration</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="ifAuth('donate-blood', 'donate-blood/appointment')" *ngIf="usertype('USER') || usertype('')">Donar Sangre</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="administration" *ngIf="authenticated && hasPermision('ROLE_ADMIN') && usertype('USER')">Administración</a></li>
                 
-                <li class="nav-item"><a class="nav-link" routerLink="donation-center/new-campaign" *ngIf="authenticated && usertype('DONATION_CENTER')">New Campaign</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="donation-center/campaigns" *ngIf="authenticated && usertype('DONATION_CENTER')">Campaigns</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="donation-center/appointments" *ngIf="authenticated && usertype('DONATION_CENTER')">Appointments</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="donation-center/new-campaign" *ngIf="authenticated && usertype('DONATION_CENTER')">Nueva Campaña</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="donation-center/campaigns" *ngIf="authenticated && usertype('DONATION_CENTER')">Campañas</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="donation-center/appointments" *ngIf="authenticated && usertype('DONATION_CENTER')">Citas</a></li>
 
-                <li class="nav-item"><a class="nav-link" routerLink="profile" *ngIf="authenticated && usertype('USER')">My Profile</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="profile" *ngIf="authenticated && usertype('USER')">Mi Perfil</a></li>
                 <li class="nav-item"><a class="nav-link" routerLink="login" *ngIf="!authenticated">LogIn</a></li>
                 <li class="nav-item"><a class="nav-link" (click)="logout()" id="logout-btn" *ngIf="authenticated">Logout</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="signup" *ngIf="!authenticated">SignUp</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="signup" *ngIf="!authenticated">Registrarme</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" routerLink="user-administration">User Administration</a></li> -->
             
                 <li class="nav-item dropdown">
