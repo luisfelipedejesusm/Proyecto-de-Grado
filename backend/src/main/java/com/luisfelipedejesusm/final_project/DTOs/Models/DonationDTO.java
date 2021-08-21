@@ -19,11 +19,19 @@ public class DonationDTO {
     private DonationCenterDTO donationCenter;
     private UserDTO user;
 
+    private String user_firstname_fallback;
+    private String user_lastname_fallback;
+
     public DonationDTO(Donation donation){
         this.id = donation.getId();
         this.dateAppointment = donation.getDateAppointment();
         this.hourAppointment = donation.getHourAppointment();
         this.donationCenter = new DonationCenterDTO(donation.getDonationCenter());
-        this.user = new UserDTO(donation.getUser());
+
+        if(donation.getUser() != null) {
+            this.user = new UserDTO(donation.getUser());
+        }else{
+            this.user = new UserDTO(donation);
+        }
     }
 }

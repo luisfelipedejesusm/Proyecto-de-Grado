@@ -11,4 +11,7 @@ import java.util.List;
 @Repository
 public interface CampaignRepository extends JpaRepository<Campaign, Long> {
     List<Campaign> findAllByDonationCenter(DonationCenter donationCenter);
+
+
+    List<Campaign> findTop3ByIsOpenOrderByIdDesc(boolean b);
 }

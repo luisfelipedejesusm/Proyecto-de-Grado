@@ -74,6 +74,6 @@ public class DonationCenterService {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         DonationCenter donationCenter = donationCenterRepository.findByUserId(userDetails.getId());
 
-        return donationRepository.findAllByDonationCenter(donationCenter);
+        return donationRepository.findAllByDonationCenterAndCancelled(donationCenter, false);
     }
 }

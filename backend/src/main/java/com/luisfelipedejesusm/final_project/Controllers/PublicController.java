@@ -1,6 +1,7 @@
 package com.luisfelipedejesusm.final_project.Controllers;
 
 import com.luisfelipedejesusm.final_project.DTOs.Models.BloodBankDTO;
+import com.luisfelipedejesusm.final_project.DTOs.Models.CampaignDTO;
 import com.luisfelipedejesusm.final_project.DTOs.Models.DonationCenterDTO;
 import com.luisfelipedejesusm.final_project.DTOs.Models.UserDTO;
 import com.luisfelipedejesusm.final_project.DTOs.Requests.BloodBankRequest;
@@ -10,12 +11,10 @@ import com.luisfelipedejesusm.final_project.DTOs.Requests.UserLatLng;
 import com.luisfelipedejesusm.final_project.DTOs.Responses.AppointmentDateAndTime;
 import com.luisfelipedejesusm.final_project.DTOs.Responses.MessageResponse;
 import com.luisfelipedejesusm.final_project.Models.BloodBank;
+import com.luisfelipedejesusm.final_project.Models.Campaign;
 import com.luisfelipedejesusm.final_project.Models.DonationCenter;
 import com.luisfelipedejesusm.final_project.Models.User;
-import com.luisfelipedejesusm.final_project.Services.AppointmentService;
-import com.luisfelipedejesusm.final_project.Services.BloodBankService;
-import com.luisfelipedejesusm.final_project.Services.DonationCenterService;
-import com.luisfelipedejesusm.final_project.Services.UserService;
+import com.luisfelipedejesusm.final_project.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -40,6 +39,9 @@ public class PublicController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CampaignService campaignService;
+
     @GetMapping("donation-center")
     public List<DonationCenterDTO> getAllDonationCenters(){
         List<DonationCenter> donationCenters = donationCenterService.getAllDonationCenters();
@@ -50,6 +52,12 @@ public class PublicController {
     public List<UserLatLng> getAllDonors(){
         List<User> donors = userService.getDonors();
         return donors.stream().map(UserLatLng::new).collect(Collectors.toList());
+    }
+
+    @GetMapping("lastCampaigns")
+    public List<CampaignDTO> getLastCampaigns(){
+        List<Campaign> donors = campaignService.getLastCampaigns();
+        return donors.stream().map(CampaignDTO::new).collect(Collectors.toList());
     }
 
     @GetMapping("/donation/appointment-dates/{id}")

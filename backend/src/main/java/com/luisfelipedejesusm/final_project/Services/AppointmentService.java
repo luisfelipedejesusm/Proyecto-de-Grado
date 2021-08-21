@@ -3,10 +3,7 @@ package com.luisfelipedejesusm.final_project.Services;
 import com.luisfelipedejesusm.final_project.DTOs.Models.DonationDTO;
 import com.luisfelipedejesusm.final_project.DTOs.Requests.DonationRequest;
 import com.luisfelipedejesusm.final_project.DTOs.Responses.AppointmentDateAndTime;
-import com.luisfelipedejesusm.final_project.Models.BloodBank;
-import com.luisfelipedejesusm.final_project.Models.Donation;
-import com.luisfelipedejesusm.final_project.Models.DonationCenter;
-import com.luisfelipedejesusm.final_project.Models.User;
+import com.luisfelipedejesusm.final_project.Models.*;
 import com.luisfelipedejesusm.final_project.Repositories.DonationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,6 +35,10 @@ public class AppointmentService {
         donation.setHourAppointment(LocalTime.parse(request.getHourAppointment() + ":00"));
         donation.setFirstTimeDonor(request.getFirstTimeDonor());
 
+        if(request.getCampaignId() != null){
+            donation.setCampaign(new Campaign(request.getCampaignId()));
+        }
+
         if(request.getUserid() != null){
             donation.setUser(new User(request.getUserid()));
         }
@@ -55,7 +56,7 @@ public class AppointmentService {
     }
 
     public List<AppointmentDateAndTime> getDonationCenterAppointmentsDate(Long donationCenterId) {
-        return donationRepository.findAllByDonationCenter(new DonationCenter(donationCenterId)).stream().map(appointment
+        return donationRepository.findAllByDonationCenterAndCancelled(new DonationCenter(donationCenterId), false).stream().map(appointment
                 -> new AppointmentDateAndTime(appointment.getDateAppointment(), appointment.getHourAppointment()))
                 .collect(Collectors.toList());
     }

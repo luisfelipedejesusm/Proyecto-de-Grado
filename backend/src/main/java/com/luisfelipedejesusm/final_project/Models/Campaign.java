@@ -39,4 +39,8 @@ public class Campaign {
 
     private Integer target;
     private LocalDate expiration;
+
+    public Campaign(Long id){
+        this.id = id;
+    }
 }
