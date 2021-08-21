@@ -24,4 +24,5 @@ public class DonationRequest {
     private Long donationCenterId;
 
     private Long userid;
+    private Long campaignId;
 }

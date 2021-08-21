@@ -56,4 +56,8 @@ public class CampaignService {
             repository.save(campaign);
         }
     }
+
+    public List<Campaign> getLastCampaigns() {
+        return repository.findTop3ByIsOpenOrderByIdDesc(true);
+    }
 }

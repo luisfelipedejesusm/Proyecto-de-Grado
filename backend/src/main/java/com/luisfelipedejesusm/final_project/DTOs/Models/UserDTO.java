@@ -2,6 +2,7 @@ package com.luisfelipedejesusm.final_project.DTOs.Models;
 
 import com.luisfelipedejesusm.final_project.Enums.EBloodType;
 import com.luisfelipedejesusm.final_project.Enums.EUserType;
+import com.luisfelipedejesusm.final_project.Models.Donation;
 import com.luisfelipedejesusm.final_project.Models.Role;
 import com.luisfelipedejesusm.final_project.Models.User;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,15 @@ public class UserDTO {
 
     private Double latitude;
     private Double longitude;
+
+    public UserDTO(Donation donation) {
+        this.firstName = donation.getFirstName();
+        this.lastName = donation.getLastName();
+        this.phoneNumber = donation.getPhoneNumber();
+        this.address = donation.getAddress();
+        this.bloodType = donation.getBloodGroup();
+        this.email = donation.getEmail();
+    }
 
     public UserDTO(User user){
         this.id = user.getId();
