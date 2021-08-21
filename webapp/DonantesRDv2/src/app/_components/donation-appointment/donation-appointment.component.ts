@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Campaign } from 'src/app/_models/campaign.model';
 import { DateAndTime } from 'src/app/_models/date-and-time.model';
 import { DonationAppointment } from 'src/app/_models/donation-apointment.model';
 import { DonationCenter } from 'src/app/_models/donation-center.model';
@@ -34,6 +35,7 @@ export class DonationAppointmentComponent implements OnInit, OnDestroy {
 
   isSubmitted: boolean = false;
   showConfirmation: boolean = false;
+  campaign!: Campaign | null;
 
   authenticated = this.permission.authenticated;
 
@@ -44,15 +46,19 @@ export class DonationAppointmentComponent implements OnInit, OnDestroy {
       })
     );
 
-    this.data.val += 1;
-    console.log(this.data.val)
-
     if(this.authenticated){
       let user: User = this.token.getUser();
       this.model.userid = user.id;
       Object.assign(this.model, user);
       this.model.bloodGroup = user.bloodType;
     }
+
+    if(this.data.campaign){
+      this.campaign = this.data.campaign;
+      this.data.campaign = null;
+      this.model.campaignId = this.campaign.id;
+    }
+    
   }
 
   newDonationAppointment(){

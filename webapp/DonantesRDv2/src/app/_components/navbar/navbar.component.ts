@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { DataService } from 'src/app/_services/data.service';
 import { PermissionService } from 'src/app/_services/permission.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { WebSocketService } from 'src/app/_services/web-socket.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,10 +16,11 @@ export class NavbarComponent implements OnInit {
   shouldBeTransparent = true;
   authenticated = this.token.isLoggedIn();
 
-val = 0;
+notifications: any[] = [];
+
 
   // constructor(public element: ElementRef) {}
-  constructor(private router: Router, private token: TokenStorageService, private permissions: PermissionService, public data: DataService){
+  constructor(private router: Router, private token: TokenStorageService, private permissions: PermissionService, public data: DataService, private webSocketService: WebSocketService){
     router.events.subscribe(val => {
       if(val instanceof NavigationEnd){
         if(val.url.indexOf('/signup') >= 0 || val.url.indexOf('/login') >= 0){
@@ -34,6 +36,28 @@ val = 0;
         }
       }
     })
+
+    // Open connection with server socket
+    let stompClient = this.webSocketService.connect();
+    stompClient.connect({}, (frame: any) => {
+      let _this = this;
+
+    stompClient.connect({}, function (frame: any) {
+      // _this.setConnected(true);
+      console.log('Connected: ' + frame);
+
+      stompClient.subscribe('/topic/hi', function (hello) {
+        _this.notifications.push(JSON.parse(hello.body));
+      });
+    });
+
+  // Subscribe to notification topic
+        // stompClient.subscribe('/topic/notification', (notification: any) => {
+
+    // Update notifications attribute with the recent messsage sent from the server
+            // this.notifications.push(JSON.parse(notification.body));
+        // })
+    });
   }
 
   @ViewChild('navbar') nav?: ElementRef; 
