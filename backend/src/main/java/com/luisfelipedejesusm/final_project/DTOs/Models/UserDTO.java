@@ -3,12 +3,14 @@ package com.luisfelipedejesusm.final_project.DTOs.Models;
 import com.luisfelipedejesusm.final_project.Enums.EBloodType;
 import com.luisfelipedejesusm.final_project.Enums.EUserType;
 import com.luisfelipedejesusm.final_project.Models.Donation;
+import com.luisfelipedejesusm.final_project.Models.Notification;
 import com.luisfelipedejesusm.final_project.Models.Role;
 import com.luisfelipedejesusm.final_project.Models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,6 +36,8 @@ public class UserDTO {
     private Double latitude;
     private Double longitude;
 
+    private List<NotificationDTO> notifications;
+
     public UserDTO(Donation donation) {
         this.firstName = donation.getFirstName();
         this.lastName = donation.getLastName();
@@ -58,5 +62,6 @@ public class UserDTO {
         this.latitude = user.getLatitude();
         this.longitude = user.getLongitude();
 //        this.roles = user.getRoles().stream().map(Role::toString).collect(Collectors.toSet());
+        this.notifications = user.getNotifications().stream().map(NotificationDTO::new).collect(Collectors.toList());
     }
 }

@@ -44,5 +44,15 @@ export class TokenStorageService {
       return !this.jwtHelper.isTokenExpired(token);
     return false;
   }
+
+  public updateNotifications(notifications: any){
+    let user: any = window.sessionStorage.getItem(USER_KEY);
+    if(user){
+      user = JSON.parse(user)
+      user.notifications = notifications;
+      window.sessionStorage.removeItem(USER_KEY);
+      window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    }
+  }
   
 }

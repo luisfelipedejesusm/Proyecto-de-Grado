@@ -42,6 +42,9 @@ import { environment } from "../environments/environment";
 import { CampaingsComponent } from './_components/campaings/campaings.component';
 import { DcAppointmentsComponent } from './_components/dc-appointments/dc-appointments.component';
 import { WebSocketService } from './_services/web-socket.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReportsComponent } from './_components/reports/reports.component';
 
 
 
@@ -68,7 +71,8 @@ import { WebSocketService } from './_services/web-socket.service';
     DonationCenterModalComponent,
     NewCampaignComponent,
     CampaingsComponent,
-    DcAppointmentsComponent
+    DcAppointmentsComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,9 @@ import { WebSocketService } from './_services/web-socket.service';
       libraries: ['places']
     }),
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders, AdminGuardService, AuthGuardService, UnAuthGuardService, UserGuardService, DonationCenterGuardService, WebSocketService],
   bootstrap: [AppComponent]
