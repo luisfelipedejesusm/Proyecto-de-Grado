@@ -11,6 +11,7 @@
                 <li class="nav-item"><a class="nav-link" routerLink="donation-center/new-campaign" *ngIf="authenticated && usertype('DONATION_CENTER')">Nueva Campaña</a></li>
                 <li class="nav-item"><a class="nav-link" routerLink="donation-center/campaigns" *ngIf="authenticated && usertype('DONATION_CENTER')">Campañas</a></li>
                 <li class="nav-item"><a class="nav-link" routerLink="donation-center/appointments" *ngIf="authenticated && usertype('DONATION_CENTER')">Citas</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="donation-center/reports" *ngIf="authenticated && usertype('DONATION_CENTER')">Reportes</a></li>
 
                 <li class="nav-item"><a class="nav-link" routerLink="profile" *ngIf="authenticated && usertype('USER')">Mi Perfil</a></li>
                 <li class="nav-item"><a class="nav-link" routerLink="login" *ngIf="!authenticated">LogIn</a></li>
@@ -18,18 +19,18 @@
                 <li class="nav-item"><a class="nav-link" routerLink="signup" *ngIf="!authenticated">Registrarme</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" routerLink="user-administration">User Administration</a></li> -->
             
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" *ngIf="authenticated && usertype('USER')">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-bell"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end notifications" aria-labelledby="navbarDropdown">
                         <li *ngFor="let not of notifications">
-                            <a href="" class="dropdown-item">
-                                <b>Titulo</b> <br>
+                            <a [routerLink]="" (click)="openCampaign(not)" class="dropdown-item">
+                                <b>{{ not.title }}</b> <br>
                                 <p>
-                                    Descripcion
+                                    {{ not.desc }}
                                     <br>
-                                    <span style="float: right;">6 min ago</span>
+                                    <span style="float: right;">{{ not.dateAndTime | date }}</span>
                                 </p>
                                 
                             </a>

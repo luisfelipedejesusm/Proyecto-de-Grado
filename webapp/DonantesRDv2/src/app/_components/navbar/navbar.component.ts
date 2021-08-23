@@ -1,7 +1,9 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Campaign } from 'src/app/_models/campaign.model';
 import { DataService } from 'src/app/_services/data.service';
 import { PermissionService } from 'src/app/_services/permission.service';
+import { SharedService } from 'src/app/_services/shared.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { WebSocketService } from 'src/app/_services/web-socket.service';
 
@@ -20,7 +22,7 @@ notifications: any[] = [];
 
 
   // constructor(public element: ElementRef) {}
-  constructor(private router: Router, private token: TokenStorageService, private permissions: PermissionService, public data: DataService, private webSocketService: WebSocketService){
+  constructor(private router: Router, private token: TokenStorageService, private permissions: PermissionService, public data: DataService, private webSocketService: WebSocketService, private shared: SharedService){
     router.events.subscribe(val => {
       if(val instanceof NavigationEnd){
         if(val.url.indexOf('/signup') >= 0 || val.url.indexOf('/login') >= 0){
@@ -37,19 +39,25 @@ notifications: any[] = [];
       }
     })
 
+    if(token.getUser() &&  token.getUser().notifications)
+      this.notifications = token.getUser().notifications.sort((a: any, b: any) => <any>new Date(b.dateAndTime) - <any>new Date(a.dateAndTime));
+
     // Open connection with server socket
     let stompClient = this.webSocketService.connect();
-    stompClient.connect({}, (frame: any) => {
+    // stompClient.connect({}, (frame: any) => {
       let _this = this;
 
     stompClient.connect({}, function (frame: any) {
       // _this.setConnected(true);
-      console.log('Connected: ' + frame);
-
-      stompClient.subscribe('/topic/hi', function (hello) {
-        _this.notifications.push(JSON.parse(hello.body));
-      });
-    });
+      // console.log('Connected: ' + frame);
+      let userid = token.getUser().id;
+      if(userid)
+        stompClient.subscribe('/topic/notification/'+userid, function (hello) {
+          // console.log(hello)
+          _this.notifications.unshift(JSON.parse(hello.body));
+          token.updateNotifications(_this.notifications);
+        });
+    // });
 
   // Subscribe to notification topic
         // stompClient.subscribe('/topic/notification', (notification: any) => {
@@ -105,6 +113,11 @@ notifications: any[] = [];
   logout(){
     this.token.signOut();
     window.location.href = "/home";
+  }
+
+  openCampaign(notification: any){
+    this.data.campaign = notification.campaign;
+    this.router.navigate(["donate-blood/appointment"]);
   }
 
 }

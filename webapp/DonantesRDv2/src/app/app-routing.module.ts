@@ -20,6 +20,7 @@ import { DonationCenterGuardService } from './_guards/donation-center.guard';
 import { NewCampaignComponent } from './_components/new-campaign/new-campaign.component';
 import { CampaingsComponent } from './_components/campaings/campaings.component';
 import { DcAppointmentsComponent } from './_components/dc-appointments/dc-appointments.component';
+import { ReportsComponent } from './_components/reports/reports.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [UnAuthGuardService]},
@@ -59,7 +60,8 @@ const routes: Routes = [
     children: [
       {path: "new-campaign", component: NewCampaignComponent},
       {path: "campaigns", component: CampaingsComponent},
-      {path: "appointments", component: DcAppointmentsComponent}
+      {path: "appointments", component: DcAppointmentsComponent},
+      {path: "reports", component: ReportsComponent}
     ]
   },
   {path: '', redirectTo: 'home', pathMatch: 'full'}

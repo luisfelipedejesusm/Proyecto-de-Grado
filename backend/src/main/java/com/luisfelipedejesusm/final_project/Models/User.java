@@ -64,6 +64,9 @@ public class User {
     @OneToMany(mappedBy = "donor", fetch = FetchType.LAZY)
     private List<DonorRequest> donationRequests = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Notification> notifications = new ArrayList<>();
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),

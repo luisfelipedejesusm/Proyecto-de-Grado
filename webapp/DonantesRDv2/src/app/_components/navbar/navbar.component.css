@@ -13,3 +13,8 @@ ul.dropdown-menu{
     min-width: 300px;
     margin-top: 15px !important;
 }
+
+.notifications{
+    max-height: 300px;
+    overflow-y: scroll;
+}
